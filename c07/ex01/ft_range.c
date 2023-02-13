@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//! mine below
 int	*ft_range(int min, int max)
 {
 	int	idx;
@@ -21,7 +22,7 @@ int	*ft_range(int min, int max)
 	if (min >= max)
 		return (NULL);
 	idx = 0;
-	arr = (int *)malloc((max - min - 1) * sizeof(int));
+	arr = (int *)malloc((max - min) * sizeof(int));
 	if (!arr)
 		return (NULL);
 	while (min < max)
@@ -31,6 +32,76 @@ int	*ft_range(int min, int max)
 		idx++;
 	}
 	return (arr);
+}
+
+//! Manuel's below
+// int	*ft_range(int min, int max)
+// {
+// 	int	i;
+// 	int	*rng;
+
+// 	if (min >= max)
+// 		return (NULL);
+// 	rng = malloc(sizeof(*rng) * (max - min));
+// 	if (rng)
+// 	{
+// 		i = 0;
+// 		while (min + i < max)
+// 		{
+// 			rng[i] = min + i;
+// 			i++;
+// 		}
+// 		return (rng);
+// 	}
+// 	else
+// 		return (NULL);
+// }
+
+//! copy below
+// int	*ft_range(int min, int max)
+// {
+// 	int	range;
+// 	int	index;
+// 	int	*buffer;
+
+// 	if (min >= max)
+// 		return (0);
+// 	range = max - min - 1;
+// 	if ((buffer = malloc(range * sizeof(int))) == NULL)
+// 		return (0);
+// 	index = 0;
+// 	while (index <= range)
+// 	{
+// 		buffer[index] = min + index;
+// 		index++;
+// 	}
+// 	return (buffer);
+// }
+
+int	main(void)
+{
+	int	min;
+	int	max;
+	int	*arr;
+	int	idx;
+
+	min = -3;
+	max = 5;
+	arr = ft_range(min, max);
+	idx = 0;
+	while (min < max)
+	{
+		if (min == max - 1)
+		{
+			printf("%d\n", arr[idx]);
+		}
+		else
+		{
+			printf("%d, ", arr[idx]);
+		}
+		idx++;
+		min++;
+	}
 }
 
 // int	main(void)
