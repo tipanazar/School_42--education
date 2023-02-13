@@ -36,7 +36,7 @@ int	strs_lenght(int size, char **strs, char *sep)
 	}
 	while (sep[sep_lenght])
 		sep_lenght++;
-	return (total_length * sep_lenght * (strs_idx - 1));
+	return (total_length + sep_lenght * (size - 1));
 }
 
 char	*tmp_string(char *str)
@@ -107,7 +107,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	int		str_idx;
 	char	*string;
 
-	if (!size)
+	if (size <= 0)
 		return ((char *)malloc(sizeof(char)));
 	str_idx = 0;
 	total_length = strs_lenght(size, strs, sep);
@@ -118,26 +118,30 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	return (string);
 }
 
-// int		main(void)
-// {
-// 	int		offset;
-// 	char	**strs;
-// 	char	*res_str;
+#include <stdio.h>
+#include <stdlib.h>
+char	*ft_strjoin(int size, char **strs, char *sep);
 
-// 	strs = malloc(4 * sizeof(char *));
-// 	if (strs == NULL)
-// 		return (1);
-// 	offset = 0;
-// 	while (offset < 4)
-// 	{
-// 		strs[offset] = "abc";
-// 		offset++;
-// 	}
-// 	res_str = ft_strjoin(4, strs, ", ");
-// 	if (res_str == NULL)
-// 		return (1);
-// 	printf("res: %s\n", res_str);
-// 	free(strs);
-// 	free(res_str);
-// 	return (0);
-// }
+int		main(void)
+{
+	int		offset;
+	char	**strs;
+	char	*res_str;
+
+	strs = malloc(3 * sizeof(char *));
+	if (strs == NULL)
+		return (1);
+	offset = 0;
+	while (offset < 3)
+	{
+		strs[offset] = "abc";
+		offset++;
+	}
+	res_str = ft_strjoin(3, strs, ", ");
+	if (res_str == NULL)
+		return (1);
+	printf("res: %s\n", res_str);
+	free(strs);
+	free(res_str);
+	return (0);
+}
