@@ -1,11 +1,23 @@
-#ifndef FT_STOCK_STR
-#define FT_STOCK_STR
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stock_str.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/14 19:36:22 by nkarpeko          #+#    #+#             */
+/*   Updated: 2023/02/14 19:36:30 by nkarpeko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FT_STOCK_STR_H
+# define FT_STOCK_STR_H
 
 typedef struct s_stock_str
 {
-    int size;
-    char *str;
-    char *copy;
-} t_stock_str;
+	int		size;
+	char	*str;
+	char	*copy;
+}			t_stock_str;
 
 #endif
