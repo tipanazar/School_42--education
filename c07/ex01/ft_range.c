@@ -6,14 +6,13 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:59:49 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/02/11 23:23:18 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:12:56 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-//! mine below
 int	*ft_range(int min, int max)
 {
 	int	idx;
@@ -34,76 +33,31 @@ int	*ft_range(int min, int max)
 	return (arr);
 }
 
-//! Manuel's below
-// int	*ft_range(int min, int max)
+// int	main(void)
 // {
-// 	int	i;
-// 	int	*rng;
+// 	int	min;
+// 	int	max;
+// 	int	*arr;
+// 	int	idx;
 
-// 	if (min >= max)
-// 		return (NULL);
-// 	rng = malloc(sizeof(*rng) * (max - min));
-// 	if (rng)
+// 	min = -3;
+// 	max = 5;
+// 	arr = ft_range(min, max);
+// 	idx = 0;
+// 	while (min < max)
 // 	{
-// 		i = 0;
-// 		while (min + i < max)
+// 		if (min == max - 1)
 // 		{
-// 			rng[i] = min + i;
-// 			i++;
+// 			printf("%d\n", arr[idx]);
 // 		}
-// 		return (rng);
+// 		else
+// 		{
+// 			printf("%d, ", arr[idx]);
+// 		}
+// 		idx++;
+// 		min++;
 // 	}
-// 	else
-// 		return (NULL);
 // }
-
-//! copy below
-// int	*ft_range(int min, int max)
-// {
-// 	int	range;
-// 	int	index;
-// 	int	*buffer;
-
-// 	if (min >= max)
-// 		return (0);
-// 	range = max - min - 1;
-// 	if ((buffer = malloc(range * sizeof(int))) == NULL)
-// 		return (0);
-// 	index = 0;
-// 	while (index <= range)
-// 	{
-// 		buffer[index] = min + index;
-// 		index++;
-// 	}
-// 	return (buffer);
-// }
-
-int	main(void)
-{
-	int	min;
-	int	max;
-	int	*arr;
-	int	idx;
-
-	min = -3;
-	max = 5;
-	arr = ft_range(min, max);
-	idx = 0;
-	while (min < max)
-	{
-		if (min == max - 1)
-		{
-			printf("%d\n", arr[idx]);
-		}
-		else
-		{
-			printf("%d, ", arr[idx]);
-		}
-		idx++;
-		min++;
-	}
-}
-
 // int	main(void)
 // {
 // 	int *res;

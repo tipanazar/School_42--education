@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:14:32 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/02/11 23:23:31 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:16:56 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 // #define NO_MATCH -1
 
-// int		ft_str_length(char *str);
-// int		compute_number_length(unsigned int number, int radix, bool negative);
+// int	ft_str_length(char *str);
+// int	compute_number_length(unsigned int number, int radix, bool negative);
 // bool	is_space(char c);
 // bool	is_base_valid(char *str);
 
