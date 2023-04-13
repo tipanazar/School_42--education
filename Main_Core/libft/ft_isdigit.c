@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   isdigit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 13:21:48 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/11 13:46:25 by nkarpeko         ###   ########.fr       */
+/*   Created: 2023/04/11 14:33:32 by nkarpeko          #+#    #+#             */
+/*   Updated: 2023/04/11 14:35:23 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-#define LIBFT_H
+#include "libft.h"
 
-int ft_isalpha(int str);
+int ft_isdigit(int num) {
+    if (num >=0 && num <= 9)
+        return 1;
+    return 0;
+}
 
-#endif
+int main(void) {
+    printf("%d;", ft_isdigit('s'));
+}

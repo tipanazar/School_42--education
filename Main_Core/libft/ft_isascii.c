@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isalpha.c                                          :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 13:21:42 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/11 14:26:25 by nkarpeko         ###   ########.fr       */
+/*   Created: 2023/04/12 19:51:59 by marvin            #+#    #+#             */
+/*   Updated: 2023/04/12 19:51:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <ctype.h>
+#include "libft.h"
 
-int ft_isalpha(int ch) {
-    if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)) 
+int ft_isascii(int num) {
+    if (num >=0 && num <= 127)
         return 1;
     return 0;
 }
 
 int main(void) {
-    printf("%d;", ft_isalpha('1'));
+    printf("%d;", ft_isascii('s'));
 }
