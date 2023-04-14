@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:20:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 16:38:37 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:37:07 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memmove(void *dest, void *src, int num)
 
 	p_dest = dest;
 	p_src = src;
+	if (!dest && !src)
+		return (NULL);
 	if (p_src < p_dest)
 	{
 		p_dest += num - 1;

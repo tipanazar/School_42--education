@@ -6,33 +6,34 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:20:03 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:57:24 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:31:39 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_atoi(char *str)
 {
 	int	sign;
 	int	result;
+	int	idx;
 
 	sign = 1;
 	result = 0;
-	while (*str == ' ')
+	idx = 0;
+	while (str[idx] == 32 || (str[idx] >= 9 && str[idx] <= 13))
+		idx++;
+	if (str[idx] == '-' || str[idx] == '+')
 	{
-		str++;
-	}
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-		{
+		if (str[idx] == '-')
 			sign = -1;
-		}
-		str++;
+		idx++;
 	}
-	while (*str >= '0' && *str <= '9')
+	while (str[idx] >= '0' && str[idx] <= '9')
 	{
-		result = result * 10 + (*str - '0');
-		str++;
+		result *= 10;
+		result += str[idx] - 48;
+		idx++;
 	}
-	return (sign * result);
+	return (result * sign);
 }
