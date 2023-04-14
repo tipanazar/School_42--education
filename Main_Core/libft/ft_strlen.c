@@ -6,13 +6,15 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:43:34 by marvin            #+#    #+#             */
-/*   Updated: 2023/04/14 15:23:06 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:40:00 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strlen(char *str)
 {
-	int idx = 0;
+	int	idx;
+
+	idx = 0;
 	while (str[idx])
 		idx++;
 	return (idx);

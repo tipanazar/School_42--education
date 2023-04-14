@@ -6,12 +6,11 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:21:42 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:22:18 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:29:41 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_isalpha(int ch)
 {
@@ -19,7 +18,3 @@ int	ft_isalpha(int ch)
 		return (1);
 	return (0);
 }
-
-// int main(void) {
-//     printf("%d;", ft_isalpha('1'));
-// }

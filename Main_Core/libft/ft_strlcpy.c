@@ -6,13 +6,13 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:21:16 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:23:02 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:38:48 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	unsigned int idx;
+	unsigned int	idx;
 
 	idx = 0;
 	if (size)

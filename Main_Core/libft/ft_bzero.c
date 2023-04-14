@@ -6,13 +6,13 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:20:08 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:22:09 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:52:37 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *ptr, size_t num)
+void	ft_bzero(void *ptr, int num)
 {
 	ft_memset(ptr, 0, num);
 }

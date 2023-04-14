@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:51:30 by marvin            #+#    #+#             */
-/*   Updated: 2023/04/14 15:24:33 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:29:24 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,4 @@ int	ft_isalnum(int symbol)
 		|| (symbol >= 0 && symbol <= 9))
 		return (1);
 	return (0);
-}
-
-int	main(void)
-{
-	printf("%d;", ft_isalnum('1'));
 }

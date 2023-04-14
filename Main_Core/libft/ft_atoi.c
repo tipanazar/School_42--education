@@ -6,11 +6,11 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:20:03 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:23:55 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:57:24 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int	sign;
 	int	result;

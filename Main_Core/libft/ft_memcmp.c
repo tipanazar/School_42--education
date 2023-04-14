@@ -6,23 +6,37 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:20:39 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:22:37 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:57:24 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(void *s1, void *s2, unsigned int n)
 {
-	const unsigned char	*p1;
+	unsigned char	*p1;
+	unsigned char	*p2;
+	unsigned int		idx;
 
-	p1 = s1, *p2 = s2;
-	for (size_t i = 0; i < n; i++, p1++, p2++)
+	p1 = s1;
+	p2 = s2;
+	idx = 0;
+	while (idx < n)
 	{
 		if (*p1 != *p2)
 		{
-			return ((*p1 < *p2) ? -1 : 1);
+			if (*p1 < *p2)
+			{
+				return (-1);
+			}
+			else
+			{
+				return (1);
+			}
 		}
+		idx++;
+		p1++;
+		p2++;
 	}
 	return (0);
 }
