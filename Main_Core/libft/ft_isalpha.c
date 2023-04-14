@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isalpha.c                                          :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:21:42 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/11 14:26:25 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:22:18 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 
-int ft_isalpha(int ch) {
-    if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)) 
-        return 1;
-    return 0;
+int	ft_isalpha(int ch)
+{
+	if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122))
+		return (1);
+	return (0);
 }
 
 // int main(void) {

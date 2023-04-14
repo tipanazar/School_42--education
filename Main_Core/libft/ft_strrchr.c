@@ -1,19 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 15:21:27 by nkarpeko          #+#    #+#             */
+/*   Updated: 2023/04/14 15:23:16 by nkarpeko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-    char *last = NULL;
-    while (*s != '\0')
-    {
-        if (*s == c)
-        {
-            last = (char *)s;
-        }
-        s++;
-    }
-    if (*s == c)
-    {
-        return (char *)s;
-    }
-    return last;
+	char	*last;
+
+	last = NULL;
+	while (*s != '\0')
+	{
+		if (*s == c)
+		{
+			last = (char *)s;
+		}
+		s++;
+	}
+	if (*s == c)
+	{
+		return ((char *)s);
+	}
+	return (last);
 }
