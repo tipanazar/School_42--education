@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:20:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:57:24 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:38:37 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memmove(void *dest, void *src, int num)
 {
-	unsigned char		*p_dest;
+	unsigned char	*p_dest;
 	unsigned char	*p_src;
 
 	p_dest = dest;

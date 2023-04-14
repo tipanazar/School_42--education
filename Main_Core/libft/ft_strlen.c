@@ -6,13 +6,15 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:43:34 by marvin            #+#    #+#             */
-/*   Updated: 2023/04/14 15:40:00 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:44:22 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+#include "libft.h"
+
+size_t	ft_strlen(const char *str)
 {
-	int	idx;
+	size_t	idx;
 
 	idx = 0;
 	while (str[idx])

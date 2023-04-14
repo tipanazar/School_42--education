@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:20:36 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:57:24 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:38:32 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_memchr(void *s, int c, int n)
 {
 	unsigned char	*p;
-	int					idx;
+	int				idx;
 
 	idx = 0;
 	p = s;
