@@ -49,7 +49,7 @@ void	ft_strings_content(char **str, char *str_copy, char c)
 		word_begin_idx = i;
 		while (str_copy[i] != c && str_copy[i])
 			i++;
-		str[str_idx] = malloc(i - word_begin_idx + 1);
+		str[str_idx] = (char *)malloc(i - word_begin_idx + 1);
 		ft_strlcpy(str[str_idx], str_copy + word_begin_idx, i - word_begin_idx
 			+ 1);
 		str_idx++;

@@ -6,29 +6,33 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:21:24 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 17:35:29 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:09:39 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(char *string, char *keyword, int n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int	keyword_len;
-	int	idx;
+	size_t	i;
+	size_t	j;
+	char	*big_c;
+	char	*lil_c;
 
-	keyword_len = ft_strlen(keyword);
-	idx = 0;
-	if (!keyword_len)
-		return ((char *)string);
-	while (idx < n && string[idx] && (n - idx >= keyword_len))
+	big_c = (char *)big;
+	lil_c = (char *)little;
+	i = -1;
+	if (!*little)
+		return (big_c);
+	while (big_c[++i] && i < len)
 	{
-		if (string[idx] == *keyword && !ft_strncmp(&string[idx], keyword,
-				keyword_len))
+		j = 0;
+		while (big_c[i + j] == lil_c[j] && i + j < len)
 		{
-			return ((char *)&string[idx]);
+			if (lil_c[j + 1] == '\0')
+				return (big_c + i);
+			j++;
 		}
-		idx++;
 	}
-	return (NULL);
+	return (0);
 }

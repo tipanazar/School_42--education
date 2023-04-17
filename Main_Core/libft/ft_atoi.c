@@ -6,13 +6,13 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:20:03 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 18:31:39 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:52:31 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	sign;
 	int	result;

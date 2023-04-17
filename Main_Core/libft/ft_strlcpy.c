@@ -6,11 +6,11 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:21:16 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:38:48 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:48:35 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int size)
 {
 	unsigned int	idx;
 

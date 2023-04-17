@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:07:59 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/17 20:18:35 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:12:36 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 void	ft_putendl_fd(char *s, int fd)
 {
 	while (*s)
-		ft_putchar(*s++, fd);
-	ft_putchar(10, fd);
+		ft_putchar_fd(*s++, fd);
+	ft_putchar_fd('\n', fd);
 }

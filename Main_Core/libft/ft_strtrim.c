@@ -6,13 +6,13 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:30:35 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/17 15:47:48 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:31:55 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtridxm(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		idx;
 	char	*result;

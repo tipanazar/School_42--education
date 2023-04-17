@@ -6,11 +6,11 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:21:13 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:21:15 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:48:33 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size)
 {
 	unsigned int	d_idx;
 	unsigned int	s_idx;
