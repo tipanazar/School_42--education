@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:21:48 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 19:05:49 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 13:13:29 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ char			*ft_strnstr(char *haystack, char *needle, int n);
 char			*ft_strrchr(const char *s, int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
