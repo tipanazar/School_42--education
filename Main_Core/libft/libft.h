@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:21:48 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/17 19:45:47 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:03:15 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 int				ft_atoi(char *str);
 void			ft_bzero(void *ptr, int num);
@@ -47,5 +48,6 @@ char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_striteri(char *s, void (*f)(unsigned int, char *));
+void			ft_putchar_fd(char c, int fd);
 
 #endif
