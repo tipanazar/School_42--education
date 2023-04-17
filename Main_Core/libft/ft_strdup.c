@@ -6,13 +6,13 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:21:10 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/14 15:50:26 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:41:55 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char *str)
+char	*ft_strdup(const char *str)
 {
 	int		len;
 	char	*new_str;

@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:21:48 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/17 18:52:50 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:41:44 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			*ft_memcpy(void *dest, const void *src, size_t num);
 void			*ft_memmove(void *dest, void *src, int num);
 void			*ft_memset(void *ptr, int value, int num);
 char			*ft_strchr(const char *s, char c);
-char			*ft_strdup(char *str);
+char			*ft_strdup(const char *str);
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
 size_t			ft_strlen(const char *str);
