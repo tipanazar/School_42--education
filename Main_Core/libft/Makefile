@@ -12,7 +12,9 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS_bonus = ft_lstnew.c  ft_lstsize.c  ft_lstadd_front.c 
+SRCS_bonus = ft_lstnew.c  ft_lstsize.c ft_lstiter.c \
+			 ft_lstlast.c ft_lstmap.c ft_lstadd_front.c \
+			 ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c
 					
 OBJS_bonus :=$(SRCS_bonus:.c=.o)
 
