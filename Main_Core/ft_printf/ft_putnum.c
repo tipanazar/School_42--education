@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 13:54:50 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/21 16:04:45 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/21 19:35:42 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	ft_putnum(int num)
     }
 }
 
-int main(void) {
-    ft_putnum(10);
-}
+// int main(void) {
+//     ft_putnum(10);
+// }

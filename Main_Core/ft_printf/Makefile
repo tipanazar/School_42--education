@@ -6,44 +6,44 @@
 #    By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 17:13:38 by nkarpeko          #+#    #+#              #
-#    Updated: 2023/04/21 16:10:21 by nkarpeko         ###   ########.fr        #
+#    Updated: 2023/04/21 20:45:51 by nkarpeko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+CC = cc
 
-SRCS =  ft_printf.c ft_putchar.c ft_type_identifier.c \
-		ft_type_distributor_middleware.c ft_putnum.c
+CFLAGS =  -Wall -Werror -Wextra 
+RM = rm -f
+
+NAME = libftprintf.a
+COLOR_GREEN=\033[0;32m
+COLOR_END = \033[0m
+LIBFTDIR = ./lib
+LIBFT = $(LIBFTDIR)/libft.a
+
+SRCS = ft_printf.c ft_type_identifier.c \
+	   ft_type_distributor_middleware.c
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra
-
-# SRCS_bonus = ft_lstnew.c  ft_lstsize.c ft_lstiter.c \
-# 			 ft_lstlast.c ft_lstmap.c ft_lstadd_front.c \
-# 			 ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c
-					
-# OBJS_bonus :=$(SRCS_bonus:.c=.o)
-
-# MYLIB = ./lib/Makefile
-
-# include $(MYLIB)
-
-.PHONY: all clean fclean re bonus
+.PHONY:	all clean fclean re
 
 all: $(NAME)
 
-# bonus: $(OBJS_bonus)
-# 	ar -crs $(NAME) $(OBJS_bonus)
+$(NAME): $(LIBFT) $(OBJS) 
+	cp lib/libft.a $@
+	ar -crs $@ $(OBJS) 
 
-$(NAME) : $(OBJS)
-	ar -crs $@ $^
-
-%.o : %.c
-	gcc $(CFLAGS) -c $< -o $@
+$(LIBFT):
+	make -C $(LIBFTDIR)
+	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 clean:
-	rm -f $(OBJS) $(OBJS_bonus)
+	$(RM) $(OBJS)
+	$(RM) $(LIBFT)
+	make -C $(LIBFTDIR) clean
+
 fclean: clean
-	rm -f $(NAME)
-re: fclean all 	
+	$(RM) $(NAME)
+
+re: fclean all
