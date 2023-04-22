@@ -1,23 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_type_distributor_middleware.c                   :+:      :+:    :+:   */
+/*   ft_putnbrl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 19:22:30 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/22 20:33:42 by nkarpeko         ###   ########.fr       */
+/*   Created: 2023/04/22 20:33:52 by nkarpeko          #+#    #+#             */
+/*   Updated: 2023/04/22 20:33:56 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-void	ft_type_distributor_middleware(va_list args, char ch, int *length)
-{
-	if (ch == 'c')
-		ft_putstrl(va_arg(args, char *), length);
-	else if (ch == 's')
-		ft_putstrl(va_arg(args, char *), length);
-	else if (ch == 'd')
-		ft_putnbrl(va_arg(args, int), length);
-}
+#include 
