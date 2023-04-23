@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 18:45:10 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/23 19:05:24 by nkarpeko         ###   ########.fr       */
+/*   Created: 2023/04/23 19:05:07 by nkarpeko          #+#    #+#             */
+/*   Updated: 2023/04/23 19:15:00 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "get_next_line.h"
 
-# include "lib/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
-
-int		ft_printf(const char *str, ...);
-int		ft_type_identifier(char ch);
-void	ft_type_distributor_middleware(va_list args, char ch, int *length);
-
-#endif
+char *get_next_line(int fd) {
+    (void) fd;
+    return "test";
+}

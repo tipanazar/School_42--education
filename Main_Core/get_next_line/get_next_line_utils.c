@@ -1,24 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 18:45:10 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/23 19:05:24 by nkarpeko         ###   ########.fr       */
+/*   Created: 2023/04/23 19:05:09 by nkarpeko          #+#    #+#             */
+/*   Updated: 2023/04/23 19:05:12 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-# include "lib/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
-
-int		ft_printf(const char *str, ...);
-int		ft_type_identifier(char ch);
-void	ft_type_distributor_middleware(va_list args, char ch, int *length);
-
-#endif
