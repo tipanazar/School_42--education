@@ -46,8 +46,9 @@ SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_lstclear.c	   \
 		$(SRC_FOLDER)ft_lstadd_front.c \
 		$(SRC_FOLDER)ft_strncmp.c      \
-		$(SRC_FOLDER)ft_putstrl.c 	   
-
+		$(SRC_FOLDER)ft_putstrl.c 	   \
+		$(SRC_FOLDER)ft_putnbrl.c	   \
+		$(SRC_FOLDER)ft_putcharl.c
 
 OBJS = $(SRCS:.c=.o)
 
