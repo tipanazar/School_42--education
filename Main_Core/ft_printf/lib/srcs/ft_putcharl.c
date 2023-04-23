@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:06:09 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/23 13:10:10 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/23 13:15:42 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_putcharl(char ch, int *length)
 {
 	write(1, &ch, 1);
-	*length  += 1;
+	*length += 1;
 }

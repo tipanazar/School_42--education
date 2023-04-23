@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:21:48 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/23 13:07:45 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:38:52 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 void				ft_putstrl(char *str, int *length);
-void				ft_putnbrl(int nb, int *length);
+void				ft_putnbrl(long nb, int *length);
 void				ft_putcharl(char ch, int *length);
+void				ft_puthexl(unsigned int num, int *length, int isbig);
+// void				ft_putaddress(unsigned long num, int *length);
+void				ft_putaddress(unsigned long addr, int *len);
 
 #endif

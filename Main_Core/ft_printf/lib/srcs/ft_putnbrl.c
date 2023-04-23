@@ -6,13 +6,14 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:33:52 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/23 13:05:10 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:32:15 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void ft_putnbrl(int nb, int *length) {
+void	ft_putnbrl(long nb, int *length)
+{
 	if (nb == -2147483648)
 	{
 		ft_putnbrl(nb / 10, length);
