@@ -6,12 +6,12 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:05:04 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/23 19:08:47 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:19:41 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NEXTLINELIB_H
-#define NEXTLINELIB_H
+#ifndef GET_NEXT_LINE_H
+#define GET_NEXT_LINE_H
 
 char *get_next_line(int fd);
 

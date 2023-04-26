@@ -6,13 +6,13 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:05:07 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/23 19:15:00 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:16:17 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 char *get_next_line(int fd) {
-    (void) fd;
+
     return "test";
 }
