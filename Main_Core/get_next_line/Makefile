@@ -6,7 +6,7 @@
 #    By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 19:09:29 by nkarpeko          #+#    #+#              #
-#    Updated: 2023/04/26 17:19:16 by nkarpeko         ###   ########.fr        #
+#    Updated: 2023/04/28 14:01:07 by nkarpeko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ RM = rm -f
 COLOR_GREEN=\033[0;32m
 COLOR_END = \033[0m
 
-NAME = get_next_line.a
+NAME =  get_next_line.a
 
-SRCS = get_next_line.c
+SRCS =  get_next_line.c \
+		get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
