@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:00:19 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/28 14:00:42 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:41:16 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,26 @@ int	ft_strlength(char *str)
 	while (str[length])
 		length++;
 	return (length);
+}
+
+int	ft_str_with_new_line_length(char *str)
+{
+	int	length;
+
+	length = 0;
+	while (str[length])
+	{
+		length++;
+		if (str[length] == '\n')
+			return (++length);
+	}
+	return (length);
+}
+
+void	ft_strcpy(char *src, char *dest, int len)
+{
+	if (!src || !dest)
+		return ;
+	while (*src && --len)
+		*dest++ = *src++;
 }
