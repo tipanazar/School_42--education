@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:05:07 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/28 20:49:04 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:13:25 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 
 char	*get_next_line(int fd)
 {
-	char	buffer[BUFFER_SIZE];
-	char	*return_str;
-	char	*return_buffer;
+	char		buffer[BUFFER_SIZE];
+	char		*return_str;
+	static char	*str_saver;
 
-	return_str = (char *)malloc(1); //!!
+	// printf("\nSAVER: %s\n",str_saver);
+	return_str = (char *)malloc(1);
+	return_str[0] = '\0';
 
-	while (ft_check_str_new_line(return_str) == -1 && read(fd, buffer, BUFFER_SIZE))
+	if (str_saver)
 	{
-		return_buffer = (char *)malloc(ft_str_with_new_line_length(buffer));
-		// printf("\nNew line string length: %d\nNew line idx: %d\n",ft_str_with_new_line_length(buffer), ft_check_str_new_line(buffer));
-		if (!return_buffer)
-			return (NULL);
-		// printf("\nBuffer length: %d\n", ft_str_with_new_line_length(buffer) );
-		// printf("Buffer string: %s\n", buffer );
-		ft_strcpy(buffer, return_buffer, ft_str_with_new_line_length(buffer) );
-		// printf("Return buffer: %s\n", return_buffer);
-		return_str = ft_strjoin(return_str, return_buffer);
-		// printf("\nMain return string: %s\n", return_str);
-		// free(return_buffer);                          //* ?
+		// printf("\nStr saver before: %s\nLength: %d\n\n", str_saver, ft_strlength(str_saver));
+		return_str = ft_strjoin(return_str, str_saver);
+		// free(str_saver);
+		str_saver += ft_str_with_new_line_length(str_saver);
+		// printf("\nStr saver after: %s\nLength: %d\n\n", str_saver, ft_strlength(str_saver));
 	}
+
+	// printf("\nReturn STRING: %s\n", return_str);
+	while (ft_check_str_new_line(return_str) == -1 && read(fd, buffer,
+			BUFFER_SIZE)){
+		return_str = ft_strjoin(return_str, buffer);
+	// printf("\nIs new line exist: %d\n",ft_check_str_new_line(return_str));
+		}
+	str_saver = ft_write_after_new_line(buffer);
+	printf("\nNew SAVER: %s\n",str_saver);
 	return (return_str);
 }
 
@@ -42,22 +47,31 @@ int	main(void)
 	int	fd;
 
 	fd = open("file.txt", O_RDONLY);
-	// char str1[8] = "1234\n567";
-	// char str2[5] = "12345";
-	// char str2[ft_str_with_new_line_length(str1)];
-	// char str1[6] = "12345";
-	// char str2[6] = "67890";
-	// printf("%ld",ft_strlength(str1) + ft_strlength(str2));
-	
+	// get_next_line(fd);
+	// get_next_line(fd);
 	printf("F_return: %s", get_next_line(fd));
 	printf("S_return: %s", get_next_line(fd));
 	printf("T_return: %s", get_next_line(fd));
-	printf("F_return: %s", get_next_line(fd));
-
-	// printf("Return: %s\n", ft_strjoin(str1, str2));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("T_return: %s", get_next_line(fd));
+	// printf("F_return: %s", get_next_line(fd));
 	close(fd);
-	// printf("Length: %d\n", ft_str_with_new_line_length(str1));
-	// ft_strcpy(str1, str2, ft_str_with_new_line_length(str1));
-	// printf("Length: %d\nSrc: %s\nDest: %s",
-	// ft_str_with_new_line_length(str1), str1, str2);
 }
