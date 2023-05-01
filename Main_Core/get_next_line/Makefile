@@ -6,12 +6,12 @@
 #    By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 19:09:29 by nkarpeko          #+#    #+#              #
-#    Updated: 2023/05/01 16:54:48 by nkarpeko         ###   ########.fr        #
+#    Updated: 2023/05/01 19:27:28 by nkarpeko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra 
+CFLAGS =  -Wall -Werror -Wextra 
 RM = rm -f
 COLOR_GREEN=\033[0;32m
 COLOR_END = \033[0m
