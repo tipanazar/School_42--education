@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:05:04 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/04/29 19:08:52 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:51:07 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 700
+#  define BUFFER_SIZE 90
 # endif
 
 char	*get_next_line(int fd);
 int		ft_strlength(char *str);
-void	ft_strcpy(char *src, char *dest, int len);
+// void	ft_strcpy(char *src, char *dest, int len);
 int		ft_str_with_new_line_length(char *str);
-int		ft_check_str_new_line(char *str);
-char	*ft_strjoin(char *s1, char *s2);
+// int		ft_check_str_new_line(char *str);
+// char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin_to_new_line(char *s1, char *s2);
+char	*ft_strcat(char *s1, char *s2);
 char	*ft_write_after_new_line(char *str);
 
 #endif
