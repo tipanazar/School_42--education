@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:05:07 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/01 19:33:13 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:00:23 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,23 @@ char	*get_next_line(int fd)
 	char		buffer[BUFFER_SIZE + 1];
 	char		*return_str;
 	static char	*str_saver;
+	int			read_amount;
 
+	return_str = NULL;
 	if (!str_saver)
 	{
-		str_saver = (char *)malloc(1);
-		if (!str_saver)
-			return (NULL);
-		str_saver[0] = '\0';
-		while (read(fd, buffer, BUFFER_SIZE))
+		str_saver = NULL;
+		read_amount = read(fd, buffer, BUFFER_SIZE);
+		while (read_amount)
 		{
-			buffer[BUFFER_SIZE] = '\0';
+			ft_str_cleaner(buffer, read_amount);
 			str_saver = ft_strcat(str_saver, buffer);
-			ft_str_cleaner(buffer);
+			ft_str_cleaner(buffer, 0); //^ ???
+			read_amount = read(fd, buffer, BUFFER_SIZE);
 		}
 	}
 	if (!ft_strlength(str_saver))
 		return (NULL);
-	return_str = (char *)malloc(1);
-	if (!return_str)
-		return (NULL);
-	return_str[0] = '\0';
 	return_str = ft_strjoin_to_new_line(return_str, str_saver);
 	str_saver += ft_str_with_new_line_length(str_saver);
 	return (return_str);
@@ -44,12 +41,14 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	int	fd;
+	int fd;
 
-	fd = open("test.txt", O_RDONLY);
+	fd = open("file.txt", O_RDONLY);
 	// get_next_line(fd);
+	// char *response = get_next_line(fd);
+	// printf("Return: %s", response);
 	printf("1__return: %s", get_next_line(fd));
-	printf("2__return: %s", get_next_line(fd));
+	// printf("2__return: %s", get_next_line(fd));
 	// printf("3__return: %s", get_next_line(fd));
 	// printf("4__return: %s", get_next_line(fd));
 	// printf("5__return: %s", get_next_line(fd));
