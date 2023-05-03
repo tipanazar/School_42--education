@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:00:19 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/03 19:07:53 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:12:54 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,30 @@ char	*ft_strcat(char *s1, char *s2)
 	return (result_str);
 }
 
-// char	*ft_remove_first_line(char *str)
-// {
-// 	int		gap;
-// 	int		idx;
-// 	char	*result;
+void	*ft_memmove(void *dest, void *src, int num)
+{
+	unsigned char	*p_dest;
+	unsigned char	*p_src;
 
-// 	gap = ft_str_with_new_line_length(str);
-// 	result = (char *)malloc(ft_strlength(str) - gap);
-// 	if (!result)
-// 		return (NULL);
-// 	while (str[gap])
-// 		result[idx++] = str[gap++];
-// 	result[idx] = '\0';
-// 	// free(str);
-// 	return (result);
-// }
+	p_dest = dest;
+	p_src = src;
+	if (!dest && !src)
+		return (NULL);
+	if (p_src < p_dest)
+	{
+		p_dest += num - 1;
+		p_src += num - 1;
+		while (num--)
+		{
+			*p_dest-- = *p_src--;
+		}
+	}
+	else
+	{
+		while (num--)
+		{
+			*p_dest++ = *p_src++;
+		}
+	}
+	return (dest);
+}

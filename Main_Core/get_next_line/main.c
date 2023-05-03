@@ -1,28 +1,18 @@
 #include "get_next_line.h"
 
-int main (void)
+int	main(void)
 {
+	char str[] = "line I\nline II\nline III\nline IV\nline V";
+		ft_memmove(str, str[ft_str_with_new_line_length(str)], ft_strlength(str) - ft_str_with_new_line_length(str));
+	puts(str);
+	return (0);
+	// int fd;
 
-	// char *test = malloc(10);
-	// test = "1\n2\n3\n4\n56";
-	// printf("Before: %s\n", test);
-	// test = ft_remove_first_line(test);
-	// printf("After: %s\n", test);
-	// // 	test = ft_remove_first_line(test);
-	// // printf("After: %s\n", test);
-	// // 	test = ft_remove_first_line(test);
-	// // printf("After: %s\n", test);
-	// // 	test = ft_remove_first_line(test);
-	// // printf("After: %s\n", test);
-	// // 	test = ft_remove_first_line(test);
-	// // printf("After: %s\n", test);
-	int fd;
-
-	fd = open("file.txt", O_RDONLY);
-	// get_next_line(fd);
-	char *response = get_next_line(fd);
-	printf("Return: %s", response);
-	free(response);
+	// fd = open("file.txt", O_RDONLY);
+	// // get_next_line(fd);
+	// char *response = get_next_line(fd);
+	// printf("Return: %s", response);
+	// free(response);
 	// printf("1__return: %s", get_next_line(fd));
 	// printf("2__return: %s", get_next_line(fd));
 	// printf("3__return: %s", get_next_line(fd));
@@ -40,5 +30,5 @@ int main (void)
 	// printf("15_return: %s", get_next_line(fd));
 	// printf("16_return: %s", get_next_line(fd));
 	// printf("\n___return: %s", get_next_line(fd));
-	close(fd);
+	// close(fd);
 }
