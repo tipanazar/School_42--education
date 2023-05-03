@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:00:19 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/02 17:06:37 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:07:53 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ char	*ft_strjoin_to_new_line(char *s1, char *s2)
 	if (!result_str)
 		return (NULL);
 	if (s1)
+	{
 		while (*s1)
 			result_str[++idx] = *s1++;
+		free(s1);
+	}
 	while (--to_new_line_len)
 		result_str[++idx] = *s2++;
 	result_str[++idx] = '\0';
@@ -68,16 +71,30 @@ char	*ft_strcat(char *s1, char *s2)
 	if (!result_str)
 		return (NULL);
 	if (s1)
+	{
 		while (*s1)
 			result_str[++idx] = *s1++;
+		free(s1);
+	}
 	while (*s2)
 		result_str[++idx] = *s2++;
 	result_str[++idx] = '\0';
 	return (result_str);
 }
 
-void	ft_str_cleaner(char *str, int start)
-{
-	while (str[start])
-		str[start++] = '\0';
-}
+// char	*ft_remove_first_line(char *str)
+// {
+// 	int		gap;
+// 	int		idx;
+// 	char	*result;
+
+// 	gap = ft_str_with_new_line_length(str);
+// 	result = (char *)malloc(ft_strlength(str) - gap);
+// 	if (!result)
+// 		return (NULL);
+// 	while (str[gap])
+// 		result[idx++] = str[gap++];
+// 	result[idx] = '\0';
+// 	// free(str);
+// 	return (result);
+// }
