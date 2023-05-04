@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:05:04 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/03 19:13:00 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:22:12 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,21 @@
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <unistd.h>
-#include <string.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 999999
+#  define BUFFER_SIZE 99999
+
 # endif
 
-char	*get_next_line(int fd);
-int		ft_strlength(char *str);
-int		ft_str_with_new_line_length(char *str);
-char	*ft_strjoin_to_new_line(char *s1, char *s2);
-char	*ft_strcat(char *s1, char *s2);
-void	*ft_memmove(void *dest, void *src, int num);
+char			*get_next_line(int fd);
+unsigned int	ft_strlength(char *str);
+int				ft_str_with_new_line_length(char *str);
+char			*ft_strjoin_to_new_line(char *s1, char *s2);
+char			*ft_strcat(char *s1, char *s2);
+void	ft_remove_first_line(char *str);
+void			ft_strcpy(char *dest, char *src, unsigned int start);
+void			*ft_memmove(void *dest, void *src, int num);
 
 #endif
