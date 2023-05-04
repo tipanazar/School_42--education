@@ -6,15 +6,15 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:00:19 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/04 16:21:07 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/04 21:27:41 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-unsigned int	ft_strlength(char *str)
+int	ft_strlength(char *str)
 {
-	unsigned int	length;
+	int	length;
 
 	length = 0;
 	if (!str)
@@ -38,108 +38,63 @@ int	ft_str_with_new_line_length(char *str)
 	return (length);
 }
 
+int	ft_new_line_detector(char *str)
+{
+	int	idx;
+
+	idx = 0;
+	while (str[idx])
+		if (str[idx++] == '\n')
+			return (idx);
+	return (0);
+}
+
 char	*ft_strjoin_to_new_line(char *s1, char *s2)
 {
 	char	*result_str;
-	int		idx;
+	int		f_idx;
 	int		to_new_line_len;
 
+	f_idx = 0;
 	to_new_line_len = ft_str_with_new_line_length(s2) + 1;
-	idx = -1;
-	result_str = (char *)malloc(ft_strlength(s1) + to_new_line_len);
+	result_str = (char *)malloc(ft_strlength(s1) + to_new_line_len );
+	// printf("Alloc amount: %d\n", ft_strlength(s1) + to_new_line_len );
 	if (!result_str)
 		return (NULL);
 	if (s1)
 	{
-		while (*s1)
-			result_str[++idx] = *s1++;
-		// free(s1);
+		while (s1[f_idx])
+		{
+			result_str[f_idx] = s1[f_idx];
+			f_idx++;
+		}
+		free(s1);
 	}
 	while (--to_new_line_len)
-		result_str[++idx] = *s2++;
-	result_str[++idx] = '\0';
+		result_str[f_idx++] = *s2++;
+	result_str[f_idx] = '\0';
+	// printf("\nResult: %s\n", result_str);
 	return (result_str);
-}
-
-char	*ft_strcat(char *s1, char *s2)
-{
-	char	*result_str;
-	int		idx;
-
-	idx = -1;
-	result_str = (char *)malloc(ft_strlength(s1) + ft_strlength(s2) + 1);
-	if (!result_str)
-		return (NULL);
-	if (s1)
-	{
-		while (*s1)
-			result_str[++idx] = *s1++;
-		// free(s1);
-	}
-	while (*s2)
-		result_str[++idx] = *s2++;
-	result_str[++idx] = '\0';
-	return (result_str);
-}
-
-void	ft_strcpy(char *dest, char *src, unsigned int start)
-{
-	unsigned int	idx;
-
-	idx = 0;
-	if (start >= ft_strlength(src))
-		return ;
-	while (src[idx])
-	{
-		dest[idx++] = src[start++];
-	}
-	dest[idx] = '\0';
-}
-
-void	*ft_memmove(void *dest, void *src, int num)
-{
-	unsigned char	*p_dest;
-	unsigned char	*p_src;
-
-	p_dest = dest;
-	p_src = src;
-	if (!dest && !src)
-		return (NULL);
-	if (p_src < p_dest)
-	{
-		p_dest += num - 1;
-		p_src += num - 1;
-		while (num--)
-		{
-			*p_dest-- = *p_src--;
-		}
-	}
-	else
-	{
-		while (num--)
-		{
-			*p_dest++ = *p_src++;
-		}
-	}
-	return (dest);
 }
 
 void	ft_remove_first_line(char *str)
 {
-	int second_line_idx = ft_str_with_new_line_length(str);
-	int new_str_len = ft_strlength(str) - second_line_idx;
-	int idx = 0;
+	int	second_line_idx;
+	int	new_str_len;
+	int	idx;
 
-	// if (second_line_idx == -1 || new_str_len <= 0)
-	// 	return ;
-
+	second_line_idx = ft_str_with_new_line_length(str);
+	new_str_len = ft_strlength(str) - second_line_idx;
+	idx = 0;
 	while (new_str_len--)
 		str[idx++] = str[second_line_idx++];
 	str[idx] = '\0';
-
 	while (str[++idx])
-	{
-		str[idx] = 0;
-		printf("\nIter++\n");
-	}
+		str[idx] = '\0';
+}
+
+void	ft_str_cleaner(char *str, int start)
+{
+	while (str[start])
+		str[start++] = '\0';
 }

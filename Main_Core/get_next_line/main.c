@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/04 18:03:59 by nkarpeko          #+#    #+#             */
+/*   Updated: 2023/05/04 21:24:12 by nkarpeko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	main(void)
@@ -16,7 +28,7 @@ int	main(void)
 	char *response = get_next_line(fd);
 	printf("1__return: %s", response);
 	response = get_next_line(fd);
-	// printf("2__return: %s", response);
+	printf("2__return: %s", response);
 	// response = get_next_line(fd);
 	// printf("3__return: %s", response);
 	// response = get_next_line(fd);
