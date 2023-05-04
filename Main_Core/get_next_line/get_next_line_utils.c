@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:00:19 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/04 21:27:41 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/04 21:40:39 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ char	*ft_strjoin_to_new_line(char *s1, char *s2)
 {
 	char	*result_str;
 	int		f_idx;
+	int		s_idx;
 	int		to_new_line_len;
 
+	s_idx = 0;
 	f_idx = 0;
 	to_new_line_len = ft_str_with_new_line_length(s2) + 1;
-	result_str = (char *)malloc(ft_strlength(s1) + to_new_line_len );
-	// printf("Alloc amount: %d\n", ft_strlength(s1) + to_new_line_len );
+	result_str = (char *)malloc(ft_strlength(s1) + to_new_line_len);
+	// printf("Alloc amount: %d\n", ft_strlength(s1) + to_new_line_len);
 	if (!result_str)
 		return (NULL);
 	if (s1)
@@ -71,7 +73,7 @@ char	*ft_strjoin_to_new_line(char *s1, char *s2)
 		free(s1);
 	}
 	while (--to_new_line_len)
-		result_str[f_idx++] = *s2++;
+		result_str[f_idx++] = s2[s_idx++];
 	result_str[f_idx] = '\0';
 	// printf("\nResult: %s\n", result_str);
 	return (result_str);
