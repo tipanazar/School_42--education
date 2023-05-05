@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:00:19 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/04 21:40:39 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:11:22 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	*ft_strjoin_to_new_line(char *s1, char *s2)
 	f_idx = 0;
 	to_new_line_len = ft_str_with_new_line_length(s2) + 1;
 	result_str = (char *)malloc(ft_strlength(s1) + to_new_line_len);
-	// printf("Alloc amount: %d\n", ft_strlength(s1) + to_new_line_len);
 	if (!result_str)
 		return (NULL);
 	if (s1)
@@ -75,7 +74,6 @@ char	*ft_strjoin_to_new_line(char *s1, char *s2)
 	while (--to_new_line_len)
 		result_str[f_idx++] = s2[s_idx++];
 	result_str[f_idx] = '\0';
-	// printf("\nResult: %s\n", result_str);
 	return (result_str);
 }
 
@@ -93,10 +91,4 @@ void	ft_remove_first_line(char *str)
 	str[idx] = '\0';
 	while (str[++idx])
 		str[idx] = '\0';
-}
-
-void	ft_str_cleaner(char *str, int start)
-{
-	while (str[start])
-		str[start++] = '\0';
 }
