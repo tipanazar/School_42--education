@@ -52,7 +52,10 @@ SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_puthexl.c	   \
 		$(SRC_FOLDER)ft_putaddress.c   \
 		$(SRC_FOLDER)get_next_line.c   \
-		$(SRC_FOLDER)get_next_line_utils.c   
+		$(SRC_FOLDER)get_next_line_utils.c  \
+		$(SRC_FOLDER)ft_printf.c	   \
+		$(SRC_FOLDER)ft_type_distributor_middleware.c   \
+		$(SRC_FOLDER)ft_type_identifier.c	 
 
 OBJS = $(SRCS:.c=.o)
 

@@ -21,10 +21,10 @@ $(NAME): $(LIBFT) $(OBJS)
 	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 $(LIBFT):
+	$(RM) $(LIBFT)
 	make -C $(LIBFTDIR)
 
 clean:
-	$(RM) $(LIBFT)
 	$(RM) $(OBJS)
 	make -C $(LIBFTDIR) clean
 

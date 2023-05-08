@@ -5,5 +5,5 @@
 int main(void) 
 {
      getpid();
-   printf("Pid: %d", getpid());
+   ft_printf("Pid: %d", getpid());
 }
