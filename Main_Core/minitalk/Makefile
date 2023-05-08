@@ -1,5 +1,4 @@
 CC = cc
-
 CFLAGS =  -Wall -Werror -Wextra 
 RM = rm -f
 
@@ -21,16 +20,15 @@ $(NAME): $(LIBFT) $(OBJS)
 	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 $(LIBFT):
-	$(RM) $(LIBFT)
 	make -C $(LIBFTDIR)
 
 clean:
 	$(RM) $(OBJS)
+	$(RM) $(LIBFT)
 	make -C $(LIBFTDIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
-	$(RM) $(LIBFT)
 
 re: fclean all
 

@@ -1,7 +1,8 @@
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+
 NAME = libft.a
-
 SRC_FOLDER = srcs/
-
 SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_isprint.c      \
 		$(SRC_FOLDER)ft_memcmp.c       \
@@ -58,9 +59,7 @@ SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_type_identifier.c	 
 
 OBJS = $(SRCS:.c=.o)
-
-CFLAGS = -Wall -Werror -Wextra
-					
+		
 all: $(NAME)
 
 $(NAME) : $(OBJS)
