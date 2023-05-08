@@ -69,7 +69,7 @@ $(NAME) : $(OBJS)
 	gcc $(CFLAGS) -c $< -o $@
 
 clean:
-	# rm -f $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
