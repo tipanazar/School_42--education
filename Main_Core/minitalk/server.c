@@ -32,7 +32,7 @@ void ft_message_handler(int sig)
   static int idx;
   static char c[8];
 
-  idx = 0;
+  // idx = 0;
   if (sig == SIGUSR1)
     c[idx] = '1';
   else if (sig == SIGUSR2)

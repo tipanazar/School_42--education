@@ -37,6 +37,5 @@ int main(int argc, char **argv)
 
     pidserv = ft_atoi(argv[1]);
     ft_message_handler(argv[2], pidserv);
-    
     return 0;
 }
