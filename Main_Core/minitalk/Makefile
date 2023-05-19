@@ -6,42 +6,38 @@
 #    By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 13:46:04 by nkarpeko          #+#    #+#              #
-#    Updated: 2023/05/18 22:27:02 by nkarpeko         ###   ########.fr        #
+#    Updated: 2023/05/19 20:12:46 by nkarpeko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
-CFLAGS =  -Wall -Werror -Wextra 
-RM = rm -f
-
-NAME = minitalk.a
-COLOR_GREEN=\033[0;32m
+COLOR_GREEN = \033[0;32m
 COLOR_END = \033[0m
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+RM = rm -f
+SERVER = server
+CLIENT = client
 LIBFTDIR = ./lib
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = server.c client.c 
+SRCS = server.c client.c
 
-OBJS = $(SRCS:.c=.o)
-
-all: $(NAME)
-
-$(NAME): $(LIBFT) $(OBJS) 
-	cp $(LIBFT) $@
-	ar -crs $@ $(OBJS) 
-	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
+all: $(LIBFT)
 
 $(LIBFT):
 	make -C $(LIBFTDIR)
+	$(CC) $(CFLAGS) server.c $(LIBFT) -o $(SERVER)
+	$(CC) $(CFLAGS) client.c $(LIBFT) -o $(CLIENT)
+	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 clean:
-	$(RM) $(OBJS)
 	$(RM) $(LIBFT)
 	make -C $(LIBFTDIR) clean
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(SERVER)
+	$(RM) $(CLIENT)
 
-re: fclean all
+re: clean all
 
 .PHONY:	all clean fclean re

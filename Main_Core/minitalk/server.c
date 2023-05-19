@@ -6,12 +6,12 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:45:57 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/18 21:59:13 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:10:20 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./lib/libft.h"
-# include <signal.h>
+#include "./lib/libft.h"
+#include <signal.h>
 
 void	ft_message_handler(int sig)
 {
