@@ -27,21 +27,21 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) 
-        cp $(LIBFT) $@
+	cp $(LIBFT) $@
 	ar -crs $@ $(OBJS) 
-        $(CC) $(CFLAGS) $(SRCS) $(NAME) -o push_swap
+# $(CC) $(CFLAGS) $(SRCS) -o push_swap
 	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 $(LIBFT):
-    make -C $(LIBFTDIR)
+	make -C $(LIBFTDIR)
 
 clean:
-    $(RM) $(OBJS)
-    $(RM) $(LIBFT)
-    make -C $(LIBFTDIR) clean
+	$(RM) $(OBJS)
+	$(RM) $(LIBFT)
+	make -C $(LIBFTDIR) clean
 
 fclean: clean
-    $(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 

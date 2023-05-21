@@ -12,8 +12,8 @@
 
 #include "push_swap.h"
 
-int	main(int argc, int argv[])
+int	main(int argc, char *argv[])
 {
 	ft_printf("%d, %d", argc, argv[1]);
 	return (0);
-}
+}	
