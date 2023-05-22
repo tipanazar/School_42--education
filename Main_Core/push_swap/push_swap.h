@@ -4,11 +4,11 @@
 
 # include "./libft/libft.h"
 
-typedef struct node
+typedef struct stack
 {
 	int value;
-	struct node *next;
-} node_t;
+	struct stack *next;
+} stack_a;
 
 void	ft_print_test(void);
 
