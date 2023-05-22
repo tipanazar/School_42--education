@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/libft.h"
+#include "./libft/libft.h"
 #include <signal.h>
 
 void	ft_message_handler(char *str, int pidserv)

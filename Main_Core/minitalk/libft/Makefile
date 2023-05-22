@@ -1,6 +1,3 @@
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-
 NAME = libft.a
 SRC_FOLDER = srcs/
 SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
@@ -53,20 +50,18 @@ SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_puthexl.c	   \
 		$(SRC_FOLDER)ft_putaddress.c   \
 		$(SRC_FOLDER)get_next_line.c   \
-		$(SRC_FOLDER)get_next_line_utils.c  \
-		$(SRC_FOLDER)ft_printf.c	   \
+		$(SRC_FOLDER)get_next_line_utils.c   \
+		$(SRC_FOLDER)ft_printf.c		   \
 		$(SRC_FOLDER)ft_type_distributor_middleware.c   \
-		$(SRC_FOLDER)ft_type_identifier.c	 
+		$(SRC_FOLDER)ft_type_identifier.c	
 
 OBJS = $(SRCS:.c=.o)
-		
+
 all: $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME): $(OBJS)
 	ar -crs $@ $^
-
-%.o : %.c
-	gcc $(CFLAGS) -c $< -o $@
+	rm -f $(OBJS)
 
 clean:
 	rm -f $(OBJS)
@@ -76,4 +71,4 @@ fclean: clean
 	
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

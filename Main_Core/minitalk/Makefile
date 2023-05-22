@@ -17,7 +17,7 @@ CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 SERVER = server
 CLIENT = client
-LIBFTDIR = ./lib
+LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS = server.c client.c
