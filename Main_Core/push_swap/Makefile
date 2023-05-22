@@ -29,7 +29,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJS) 
 	cp $(LIBFT) $@
 	ar -crs $@ $(OBJS) 
-# $(CC) $(CFLAGS) $(SRCS) -o push_swap
+	$(CC) $(CFLAGS) $(SRCS) -o push_swap
 	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 $(LIBFT):
