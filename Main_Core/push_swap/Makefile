@@ -14,35 +14,30 @@ CC = cc
 CFLAGS =  -Wall -Werror -Wextra
 RM = rm -f
 
-NAME = push_swap.a
+EXECUTABLE = push_swap
 COLOR_GREEN=\033[0;32m
 COLOR_END = \033[0m
-LIBFTDIR = ./lib
+LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = main.c 
+SRCS = main.c test.c
 
-OBJS = $(SRCS:.c=.o)
+all: $(EXECUTABLE)
 
-all: $(NAME)
-
-$(NAME): $(LIBFT) $(OBJS) 
+$(EXECUTABLE): $(LIBFT)
 	cp $(LIBFT) $@
-	ar -crs $@ $(OBJS) 
-	$(CC) $(CFLAGS) $(SRCS) $(NAME) -o push_swap
+	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(EXECUTABLE)
 	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 $(LIBFT):
 	make -C $(LIBFTDIR)
 
 clean:
-	$(RM) $(OBJS)
 	$(RM) $(LIBFT)
 	make -C $(LIBFTDIR) clean
 
 fclean: clean
-	$(RM) $(NAME)
-	$(RM) push_swap
+	$(RM) $(EXECUTABLE)
 
 re: fclean all
 

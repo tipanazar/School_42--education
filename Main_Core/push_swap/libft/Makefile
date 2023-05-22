@@ -1,7 +1,5 @@
 NAME = libft.a
-
 SRC_FOLDER = srcs/
-
 SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_isprint.c      \
 		$(SRC_FOLDER)ft_memcmp.c       \
@@ -57,20 +55,13 @@ SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_type_distributor_middleware.c   \
 		$(SRC_FOLDER)ft_type_identifier.c	
 
-
 OBJS = $(SRCS:.c=.o)
-
-CFLAGS = -Wall -Werror -Wextra
-					
-.PHONY: all clean fclean re bonus
 
 all: $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME): $(OBJS)
 	ar -crs $@ $^
-
-%.o : %.c
-	gcc $(CFLAGS) -c $< -o $@
+	rm -f $(OBJS)
 
 clean:
 	rm -f $(OBJS)
@@ -79,3 +70,5 @@ fclean: clean
 	rm -f $(NAME)
 	
 re: fclean all
+
+.PHONY: all clean fclean re bonus

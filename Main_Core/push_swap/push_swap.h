@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#define PUSH_SWAP_H
 
-#include "./lib/libft.h"
+#include "./libft/libft.h"
+
+void ft_print_test(void);
 
 #endif
