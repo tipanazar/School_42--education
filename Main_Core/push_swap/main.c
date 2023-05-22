@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2023/05/16 14:48:26 by nkarpeko          #+#    #+#             */
 /*   Updated: 2023/05/20 15:38:24 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
@@ -12,9 +15,10 @@
 
 #include "push_swap.h"
 
+
 int	main(int argc, char *argv[])
 {
 	ft_printf("%d, %s\n", argc, argv[0]);
 	ft_print_test();
 	return (0);
-}	
+}

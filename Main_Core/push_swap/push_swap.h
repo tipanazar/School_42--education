@@ -1,20 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 15:19:34 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/20 15:38:17 by nkarpeko         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include "./libft/libft.h"
+# include "./libft/libft.h"
 
-void ft_print_test(void);
+typedef struct node
+{
+	int value;
+	struct node *next;
+} node_t;
+
+void	ft_print_test(void);
 
 #endif
