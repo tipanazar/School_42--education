@@ -29,7 +29,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJS) 
 	cp $(LIBFT) $@
 	ar -crs $@ $(OBJS) 
-	$(CC) $(CFLAGS) $(SRCS) -o push_swap
+	$(CC) $(CFLAGS) $(SRCS) $(NAME) -o push_swap
 	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 $(LIBFT):
@@ -42,6 +42,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) push_swap
 
 re: fclean all
 
