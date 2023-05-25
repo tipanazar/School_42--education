@@ -20,7 +20,7 @@ COLOR_END = \033[0m
 LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = main.c test.c
+SRCS = main.c test.c list-tester.c
 
 all: $(EXECUTABLE)
 
