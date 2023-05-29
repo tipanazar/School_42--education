@@ -7,6 +7,6 @@ int	main(int argc, char *argv[])
 	// ft_print_test();
 	(void)argc;
 	stack *stack_a = ft_create_stack(argv);
-	printf("Value: %d\n",stack_a[0].value);
+	printf("Value: %d\n",stack_a.value);
 	return (0);
 }
