@@ -21,8 +21,9 @@ LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS = main.c \
-	utils/linked_list_operations.c \
-	utils/stack_operations.c
+	stack/linked_list_operations.c \
+	stack/stack_operations.c \
+	checkers/checkers.c
 
 all: $(EXECUTABLE)
 

@@ -16,17 +16,17 @@
 #include "push_swap.h"
 
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
-	(void)argc;
+	ft_checker(argc, argv);
 	stack *stack_a = NULL;
 	// stack *stack_b = NULL;
-	ft_create_stack(&stack_a, argv);
+	ft_create_stack(&stack_a, argc, argv);
 	printf("Stack_A: ");
 	ft_print_list(stack_a);
-	ft_swap_first_two(&stack_a);
-	printf("\nSwapped: ");
-	ft_print_list(stack_a);
-	free(stack_a);
+	// ft_swap_first_two(&stack_a);
+	// printf("\nSwapped: ");
+	// ft_print_list(stack_a);
+	ft_free_list(stack_a);
 	return (0);
 }
