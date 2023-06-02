@@ -21,8 +21,9 @@ LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS = main.c \
-	stack/linked_list_operations.c \
-	stack/stack_operations.c \
+	utils/linked_list_operations.c \
+	utils/stack_operations.c \
+	utils/stack_combined_operations.c \
 	checkers/checkers.c
 
 all: $(EXECUTABLE)
@@ -30,7 +31,7 @@ all: $(EXECUTABLE)
 $(EXECUTABLE): $(LIBFT)
 	cp $(LIBFT) $@
 	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(EXECUTABLE)
-	echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
+	@echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
 
 $(LIBFT):
 	make -C $(LIBFTDIR)

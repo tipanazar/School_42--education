@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_operations.c                                 :+:      :+:    :+:   */
+/*   stack_combined_operations.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 18:32:51 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/05/31 19:25:04 by nkarpeko         ###   ########.fr       */
+/*   Created: 2023/06/02 20:16:45 by nkarpeko          #+#    #+#             */
+/*   Updated: 2023/06/02 20:18:21 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_swap_first_two(stack **head)
+void	ft_swap_first_two_both_stacks(t_stack **first, t_stack **second)
 {
-	stack	*saver;
+	ft_swap_first_two(first, 0);
+	ft_swap_first_two(second, 0);
+	ft_printf("ss\n");
+}
 
-	if (*head && (*head)->next)
-	{
-		saver = (*head)->next;
-		(*head)->next = (*head)->next->next;
-		saver->next = *head;
-		*head = saver;
-	}
+void	ft_rotate_both(t_stack **first, t_stack **second)
+{
+	ft_rotate(first, 0);
+	ft_rotate(second, 0);
+	ft_printf("rr\n");
+}
+
+void	ft_reverse_rotate_both(t_stack **first, t_stack **second)
+{
+	ft_reverse_rotate(first, 0);
+	ft_reverse_rotate(second, 0);
+	ft_printf("rrr\n");
 }
