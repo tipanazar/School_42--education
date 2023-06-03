@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:32:56 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/02 20:10:33 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:35:41 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ void	ft_create_stack(t_stack **list, int argc, char **args_arr)
 	while (args_arr[--argc] && argc)
 	{
 		new_node = (t_stack *)malloc(sizeof(t_stack));
-		new_node->value = ft_atoi(args_arr[argc]);
+		new_node->value = ft_atol(args_arr[argc]);
 		new_node->next = *list;
 		new_node->prev = prev_node;
 		if (*list)
 			(*list)->prev = new_node;
 		*list = new_node;
-		// prev_node = new_node; //* to make closed list (infinite)
 	}
 }
 

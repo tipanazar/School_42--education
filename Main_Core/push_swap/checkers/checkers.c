@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:49:03 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/02 09:47:22 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:12:14 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,22 @@ void	ft_checker(int argc, char **argv)
 	if (argc < 3)
 		ft_throw_err();
 	while (argv[--argc] && argc)
-		if (ft_atoi(argv[argc]) < 0 || ft_atoi(argv[argc]) > 9)
-			ft_throw_err();
+	{
+		idx = -1;
+		while (argv[argc][++idx])
+		{
+			if ((argv[argc][idx] <= '0' && argv[argc][idx] >= '9')
+				&& !(argv[argc][idx] == '-' && !idx))
+				ft_throw_err();
+			if (ft_atol(argv[argc]) < INT_MIN || ft_atol(argv[argc]) > INT_MAX)
+				ft_throw_err();
+		}
+	}
 	while (argv[++argc])
 	{
 		idx = 0;
 		while (argv[++idx])
-			if ((ft_atoi(argv[argc]) == ft_atoi(argv[idx])) && (idx != argc))
+			if ((ft_atol(argv[argc]) == ft_atol(argv[idx])) && (idx != argc))
 				ft_throw_err();
 	}
 }

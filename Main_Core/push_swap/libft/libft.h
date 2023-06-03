@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:50:54 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/02 09:51:19 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:35:14 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-int					ft_atoi(const char *str);
+long				ft_atol(const char *str);
 void				ft_bzero(void *ptr, int num);
 void				*ft_calloc(int num, int size);
 int					ft_isalnum(int symbol);
