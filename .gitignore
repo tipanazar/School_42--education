@@ -4,3 +4,6 @@ a.out
 *.o
 *.a
 francinette
+push_swap
+server
+client
