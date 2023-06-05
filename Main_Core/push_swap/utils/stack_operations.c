@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:32:51 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/03 16:30:48 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:33:31 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 void	ft_swap_first_two(t_stack **list, int stack_name)
 {
-	t_stack	*to_beginning;
+	int	to_beginning;
 
 	if (*list && (*list)->next)
 	{
-		to_beginning = (*list)->next;
-		to_beginning->prev = NULL;
-		(*list)->next = (*list)->next->next;
-		(*list)->next->prev = *list;
-		to_beginning->next = *list;
-		*list = to_beginning;
+		to_beginning = (*list)->next->value;
+		(*list)->next->value = (*list)->value;
+		(*list)->value = to_beginning;
 		if (stack_name)
 			ft_printf("s%c\n", stack_name);
 	}
@@ -50,18 +47,17 @@ void	ft_push_first_value(t_stack **src, t_stack **dest, int stack_name)
 
 void	ft_rotate(t_stack **list, int stack_name)
 {
-	t_stack	*to_end;
+	int	to_end;
 
 	if (*list && (*list)->next)
 	{
-		to_end = *list;
-		*list = (*list)->next;
-		(*list)->prev = NULL;
-		to_end->next = NULL;
+		to_end = (*list)->value;
 		while ((*list)->next)
+		{
+			(*list)->value = (*list)->next->value;
 			*list = (*list)->next;
-		to_end->prev = *list;
-		(*list)->next = to_end;
+		}
+		(*list)->value = to_end;
 		while ((*list)->prev)
 			*list = (*list)->prev;
 		if (stack_name)
@@ -71,20 +67,19 @@ void	ft_rotate(t_stack **list, int stack_name)
 
 void	ft_reverse_rotate(t_stack **list, int stack_name)
 {
-	t_stack	*to_beginning;
+	int	to_beginning;
 
 	if (*list && (*list)->next)
 	{
-		while ((*list)->next->next)
+		while ((*list)->next)
 			*list = (*list)->next;
-		to_beginning = (*list)->next;
-		to_beginning->prev = NULL;
-		(*list)->next = NULL;
+		to_beginning = (*list)->value;
 		while ((*list)->prev)
+		{
+			(*list)->value = (*list)->prev->value;
 			*list = (*list)->prev;
-		to_beginning->next = *list;
-		(*list)->prev = to_beginning;
-		*list = to_beginning;
+		}
+		(*list)->value = to_beginning;
 		if (stack_name)
 			ft_printf("rr%c\n", stack_name);
 	}

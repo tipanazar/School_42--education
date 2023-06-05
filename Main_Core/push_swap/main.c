@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:51:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/03 18:43:35 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:33:46 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	main(int argc, char **argv)
 	// ft_swap_first_two_both_stacks(&stack_a, &stack_b);
 	// ft_push_first_value(&stack_a, &stack_b, 'b');
 	// ft_rotate(&stack_b, 'b');
-	// ft_rotate(&stack_b, 'b');
 	// ft_rotate_both(&stack_a, &stack_b);
-	// ft_reverse_rotate(&stack_b, 'b');
 	// ft_reverse_rotate(&stack_b, 'b');
 	// ft_reverse_rotate_both(&stack_a, &stack_b);
 	//&
@@ -51,4 +49,3 @@ int	main(int argc, char **argv)
 // int main(void) {
 // 	ft_printf("Value: %u\n", ft_atol("2147483648"));
 // }
-
