@@ -1,7 +1,7 @@
+COLOR_GREEN=\033[0;32m
+COLOR_END = \033[0m
 NAME = libft.a
-
 SRC_FOLDER = srcs/
-
 SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_isprint.c      \
 		$(SRC_FOLDER)ft_memcmp.c       \
@@ -20,7 +20,7 @@ SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_bzero.c 	   \
 		$(SRC_FOLDER)ft_isascii.c      \
 		$(SRC_FOLDER)ft_memcpy.c       \
-		$(SRC_FOLDER)ft_atoi.c 	       \
+		$(SRC_FOLDER)ft_atol.c 	       \
 		$(SRC_FOLDER)ft_strnstr.c      \
 		$(SRC_FOLDER)ft_toupper.c      \
 		$(SRC_FOLDER)ft_isdigit.c      \
@@ -57,25 +57,21 @@ SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_type_distributor_middleware.c   \
 		$(SRC_FOLDER)ft_type_identifier.c	
 
-
 OBJS = $(SRCS:.c=.o)
-
-CFLAGS = -Wall -Werror -Wextra
-					
-.PHONY: all clean fclean re bonus
 
 all: $(NAME)
 
-$(NAME) : $(OBJS)
-	ar -crs $@ $^
-
-%.o : %.c
-	gcc $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS)
+	@ar -crs $@ $^
+	@rm -f $(OBJS)
+	@echo "$(COLOR_GREEN)\n--Libft COMPILED--\n$(COLOR_END)"
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 	
 re: fclean all
+
+.PHONY: all clean fclean re bonus
