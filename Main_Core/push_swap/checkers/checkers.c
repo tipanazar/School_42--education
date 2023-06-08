@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:49:03 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/03 20:12:14 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:17:03 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_checker(int argc, char **argv)
 {
 	int	idx;
 
-	if (argc < 3)
+	if (argc < 2)
 		ft_throw_err();
 	while (argv[--argc] && argc)
 	{

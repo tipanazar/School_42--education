@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:08:31 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/03 18:44:30 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/08 20:00:51 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_stack
 void				ft_checker(int argc, char **argv);
 void				ft_create_stack(t_stack **list, int argc, char **args_arr);
 void				ft_swap_first_two(t_stack **list, int t_stack_name);
-void				ft_swap_first_two_both_stacks(t_stack **first,
+void	ft_swap_first_two_both_stacks(t_stack **first,
 									t_stack **second);
 void				ft_push_first_value(t_stack **src, t_stack **dest,
 						int t_stack_name);
@@ -36,5 +36,9 @@ void				ft_reverse_rotate(t_stack **list, int t_stack_name);
 void				ft_reverse_rotate_both(t_stack **first, t_stack **second);
 void				ft_print_list(t_stack *head);
 void				ft_free_list(t_stack *list);
+void				ft_main_algorithm(t_stack **stack_a, t_stack **stack_b);
+int					ft_find_smallest(t_stack **list, int *total, int *biggest);
+void				ft_move_to_top(t_stack **list, int total, int position,
+						int value);
 
 #endif
