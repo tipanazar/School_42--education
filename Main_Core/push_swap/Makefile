@@ -29,19 +29,20 @@ SRCS = main.c \
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(LIBFT)
-	cp $(LIBFT) $@
-	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(EXECUTABLE)
-	@echo "$(COLOR_GREEN)\nCOMPILING IS DONE!\n$(COLOR_END)"
+	@cp $(LIBFT) $@
+	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(EXECUTABLE)
+	@make -s clean
+	@echo "$(COLOR_GREEN)\n✅---COMPILING IS DONE---✅\n$(COLOR_END)"
 
 $(LIBFT):
-	make -C $(LIBFTDIR)
+	@make -sC $(LIBFTDIR)
 
 clean:
-	$(RM) $(LIBFT)
-	make -C $(LIBFTDIR) clean
+	@$(RM) $(LIBFT)
+	@make -sC $(LIBFTDIR) clean
 
 fclean: clean
-	$(RM) $(EXECUTABLE)
+	@$(RM) $(EXECUTABLE)
 
 re: fclean all
 

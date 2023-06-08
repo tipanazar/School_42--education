@@ -1,3 +1,5 @@
+YELLOW=\033[0;34m
+COLOR_END = \033[0m
 NAME = libft.a
 SRC_FOLDER = srcs/
 SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
@@ -60,14 +62,15 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar -crs $@ $^
-	rm -f $(OBJS)
+	@ar -crs $@ $^
+	@rm -f $(OBJS)
+	@echo "$(YELLOW)\n--Libft COMPILED--\n$(COLOR_END)"
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 	
 re: fclean all
 
