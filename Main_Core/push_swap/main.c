@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:51:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/08 20:12:18 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:59:05 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv)
 	//&
 	// ft_printf("\nNew_A: ");
 	// ft_print_list(stack_a);
-	// ft_printf("New_B: ");
-	// ft_print_list(stack_b);
+	ft_printf("New_B: ");
+	ft_print_list(stack_b);
 	//*
 	ft_free_list(stack_a);
 	ft_free_list(stack_b);

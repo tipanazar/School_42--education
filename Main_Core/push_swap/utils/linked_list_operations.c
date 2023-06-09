@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:32:56 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/08 20:00:45 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:56:28 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void	ft_create_stack(t_stack **list, int argc, char **args_arr)
 			(*list)->prev = new_node;
 		*list = new_node;
 	}
+}
+
+void	ft_go_to_beggining(t_stack **list)
+{
+	while ((*list)->prev)
+		*list = (*list)->prev;
 }
 
 void	ft_print_list(t_stack *list)
