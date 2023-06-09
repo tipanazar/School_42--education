@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:08:31 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/09 16:56:52 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:59:35 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void				ft_move_to_top(t_stack **list, int total, int position,
 						int value);
 //
 void				ft_find_average(t_stack **list, int *amount, int *average);
+int					ft_find_next_lower_average(t_stack **list, int average);
 
 #endif

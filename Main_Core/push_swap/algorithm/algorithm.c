@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:00 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/09 16:57:12 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:17:35 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,31 @@ void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b)
 {
 	int	amount;
 	int	average;
-	int idx;
+	int	idx;
+
 	// int	position;
-	(void) stack_b;
+	(void)stack_b;
 	while (*stack_a)
 	{
+		if (ft_find_next_lower_average(stack_a, average) == -1 && amount <= 20)
+			break ;
 		ft_find_average(stack_a, &amount, &average);
 		idx = 0;
-		while (*stack_a && idx < 20) {
-			if((*stack_a)->value <= average) {
+		while (*stack_a && idx < 20 && ft_find_next_lower_average(stack_a,
+				average) != -1)
+		{
+			if ((*stack_a)->value <= average)
+			{
 				ft_push_first_value(stack_a, stack_b, 'b');
+				amount--;
 				idx++;
+				continue ;
 			}
-			*stack_a = (*stack_a)->next;
+			if (ft_find_next_lower_average(stack_a, average) <= amount / 2)
+				ft_rotate(stack_a, 'a');
+			else
+				ft_reverse_rotate(stack_a, 'a');
 		}
-		ft_go_to_beggining(stack_a);
 	}
 	// while ((*stack_b))
 	// {

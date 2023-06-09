@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:22:58 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/09 16:43:28 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:13:02 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@
 
 void	ft_find_average(t_stack **list, int *amount, int *average)
 {
-	long total = 0;
-	t_stack *current;
+	long	total;
+	t_stack	*current;
+
+	total = 0;
 	current = *list;
 	*amount = 0;
 	while (current)
@@ -56,4 +58,29 @@ void	ft_find_average(t_stack **list, int *amount, int *average)
 		current = current->next;
 	}
 	*average = total / *amount;
+}
+
+int	ft_find_next_lower_average(t_stack **list, int average)
+{
+	int		idx;
+	int		flag;
+	t_stack	*current;
+
+	flag = 0;
+	idx = 0;
+	current = *list;
+	while (current)
+	{
+		if (current->value <= average)
+		{
+			flag = 1;
+			break ;
+		}
+		idx++;
+		current = current->next;
+	}
+	if (flag)
+		return (idx);
+	else
+		return (-1);
 }
