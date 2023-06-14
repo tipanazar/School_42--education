@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:22:58 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/09 19:13:02 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/14 12:16:39 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,21 @@
 // 			ft_reverse_rotate(list, 'a');
 // 	}
 // }
+
+int	ft_find_amount(t_stack **list)
+{
+	t_stack	*current;
+	int		idx;
+
+	idx = 0;
+	current = *list;
+	while (current)
+	{
+		idx++;
+		current = current->next;
+	}
+	return (idx);
+}
 
 void	ft_find_average(t_stack **list, int *amount, int *average)
 {
@@ -83,4 +98,45 @@ int	ft_find_next_lower_average(t_stack **list, int average)
 		return (idx);
 	else
 		return (-1);
+}
+
+// void ft_sort_ascending(t_stack **list)  // по зростанню
+// {
+
+// }
+
+void	ft_prepare_b(t_stack **list, int value)
+{
+	int		amount;
+	int		position;
+	t_stack	*current;
+
+	position = 0;
+	if (!amount)
+		return ;
+	amount = ft_find_amount(list);
+	current = *list;
+	while (current)
+	{
+		if (current->value < value)
+			break ;
+		current = current->next;
+		position++;
+	}
+	if (position && position <= amount / 2)
+	{
+		while (position--) //* pre-decrement issue??
+		{
+			ft_rotate(list, 'b');
+		}
+	}
+	else if (position)
+	{
+		ft_reverse_rotate(list, 'b');
+	}
+}
+
+void ft_sort_descending(t_stack **list)
+{
+	
 }
