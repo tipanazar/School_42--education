@@ -6,7 +6,7 @@
 /*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:00 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/14 12:14:15 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/14 12:37:46 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b)
 			{
 				ft_prepare_b(stack_b, (*stack_a)->value);
 				ft_push_first_value(stack_a, stack_b, 'b');
+				ft_reset_b(stack_b);
 				amount--;
 				idx++;
 				continue ;

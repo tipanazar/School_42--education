@@ -6,7 +6,7 @@
 /*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:22:58 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/14 12:16:39 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/14 12:37:11 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,11 +132,48 @@ void	ft_prepare_b(t_stack **list, int value)
 	}
 	else if (position)
 	{
-		ft_reverse_rotate(list, 'b');
+		while (position--) //* pre-decrement issue??
+		{
+			ft_reverse_rotate(list, 'b');
+		}
 	}
 }
 
-void ft_sort_descending(t_stack **list)
+void	ft_reset_b(t_stack **list)
 {
-	
+	int		amount;
+	int		position;
+	int		idx;
+	int		biggest;
+	t_stack	*current;
+
+	position = 0;
+	idx = 0;
+	current = *list;
+	amount = ft_find_amount(list);
+	biggest = current->value;
+	while (current)
+	{
+		if (current->value > biggest)
+		{
+			biggest = current->value;
+			position = idx;
+		}
+		current = current->next;
+		idx++;
+	}
+	if (position && position <= amount / 2)
+	{
+		while (position--) //* pre-decrement issue??
+		{
+			ft_rotate(list, 'b');
+		}
+	}
+	else if (position)
+	{
+		while (position--) //* pre-decrement issue??
+		{
+			ft_reverse_rotate(list, 'b');
+		}
+	}
 }
