@@ -6,42 +6,11 @@
 /*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:22:58 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/14 12:37:11 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/14 15:32:26 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-// int	ft_find_smallest(t_stack **list, int *total, int *smallest)
-// {
-// 	t_stack	*current;
-// 	int		position;
-
-// 	current = *list;
-// 	*total = 0;
-// 	while (current)
-// 	{
-// 		if (!(*total) || current->value < *smallest)
-// 		{
-// 			*smallest = current->value;
-// 			position = *total;
-// 		}
-// 		*total += 1;
-// 		current = current->next;
-// 	}
-// 	return (position);
-// }
-
-// void	ft_move_to_top(t_stack **list, int total, int position, int value)
-// {
-// 	while ((*list)->value != value)
-// 	{
-// 		if (position <= total / 2)
-// 			ft_rotate(list, 'a');
-// 		else
-// 			ft_reverse_rotate(list, 'a');
-// 	}
-// }
 
 int	ft_find_amount(t_stack **list)
 {
@@ -100,21 +69,16 @@ int	ft_find_next_lower_average(t_stack **list, int average)
 		return (-1);
 }
 
-// void ft_sort_ascending(t_stack **list)  // по зростанню
-// {
-
-// }
-
 void	ft_prepare_b(t_stack **list, int value)
 {
 	int		amount;
 	int		position;
 	t_stack	*current;
 
-	position = 0;
+	amount = ft_find_amount(list);
 	if (!amount)
 		return ;
-	amount = ft_find_amount(list);
+	position = 0;
 	current = *list;
 	while (current)
 	{
@@ -123,6 +87,7 @@ void	ft_prepare_b(t_stack **list, int value)
 		current = current->next;
 		position++;
 	}
+	// ft_printf("Value: %d\nPosition: %d\nAmount: %d\n", value, position,	amount);
 	if (position && position <= amount / 2)
 	{
 		while (position--) //* pre-decrement issue??
@@ -162,18 +127,19 @@ void	ft_reset_b(t_stack **list)
 		current = current->next;
 		idx++;
 	}
+	// ft_printf("Position: %d\nBiggest: %d\nAmount: %d\n", position, biggest, amount);
 	if (position && position <= amount / 2)
 	{
 		while (position--) //* pre-decrement issue??
 		{
-			ft_rotate(list, 'b');
+			ft_rotate(list, 'd');
 		}
 	}
 	else if (position)
 	{
-		while (position--) //* pre-decrement issue??
+		while (amount - position++) //* pre-decrement issue??
 		{
-			ft_reverse_rotate(list, 'b');
+			ft_reverse_rotate(list, 'd');
 		}
 	}
 }
