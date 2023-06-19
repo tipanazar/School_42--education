@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:22:58 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/14 15:32:26 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/19 15:18:27 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_prepare_b(t_stack **list, int value)
 	}
 	else if (position)
 	{
-		while (position--) //* pre-decrement issue??
+		while (amount - position++) //* pre-decrement issue??
 		{
 			ft_reverse_rotate(list, 'b');
 		}
@@ -141,5 +141,51 @@ void	ft_reset_b(t_stack **list)
 		{
 			ft_reverse_rotate(list, 'd');
 		}
+	}
+}
+
+int	ft_find_smallest(t_stack **list, int *total, int *smallest)
+{
+	t_stack	*current;
+	int		position;
+
+	current = *list;
+	*total = 0;
+	while (current)
+	{
+		if (!(*total) || current->value < *smallest)
+		{
+			*smallest = current->value;
+			position = *total;
+		}
+		*total += 1;
+		current = current->next;
+	}
+	return (position);
+}
+
+void	ft_move_to_top(t_stack **list, int total, int position, int value)
+{
+	while ((*list)->value != value)
+	{
+		if (position <= total / 2)
+			ft_rotate(list, 'a');
+		else
+			ft_reverse_rotate(list, 'a');
+	}
+}
+
+void ft_sort_a(t_stack **stack_a, t_stack **stack_b)
+{
+	
+	int	total;
+	int	smallest;
+	int	position;
+
+	while ((*stack_a)->next)
+	{
+		position = ft_find_smallest(stack_a, &total, &smallest);
+		ft_move_to_top(stack_a, total, position, smallest);
+		ft_push_first_value(stack_a, stack_b, 'b');
 	}
 }

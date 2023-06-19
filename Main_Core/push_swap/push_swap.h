@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:08:31 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/14 12:37:23 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/19 15:17:46 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int					ft_find_next_lower_average(t_stack **list, int average);
 int					ft_find_amount(t_stack **list);
 void				ft_prepare_b(t_stack **list, int value);
 void	ft_reset_b(t_stack **list);
+void ft_sort_a(t_stack **stack_a, t_stack **stack_b);
 
 #endif

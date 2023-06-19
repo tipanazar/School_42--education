@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:00 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/14 12:37:46 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/19 15:19:53 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-// void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	int	total;
-// 	int	smallest;
-// 	int	position;
-
-// 	while ((*stack_a)->next)
-// 	{
-// 		position = ft_find_smallest(stack_a, &total, &smallest);
-// 		ft_move_to_top(stack_a, total, position, smallest);
-// 		ft_push_first_value(stack_a, stack_b, 'b');
-// 	}
-// 	while ((*stack_b))
-// 	{
-// 		ft_push_first_value(stack_b, stack_a, 'a');
-// 	}
-// }
 
 void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b)
 {
@@ -36,8 +18,6 @@ void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b)
 	int	average;
 	int	idx;
 
-	// int	position;
-	(void)stack_b;
 	while (*stack_a)
 	{
 		if (ft_find_next_lower_average(stack_a, average) == -1 && amount <= 20)
@@ -62,8 +42,9 @@ void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b)
 				ft_reverse_rotate(stack_a, 'a');
 		}
 	}
-	// while ((*stack_b))
-	// {
-	// 	ft_push_first_value(stack_b, stack_a, 'a');
-	// }
+	ft_sort_a(stack_a, stack_b);
+	while ((*stack_b))
+	{
+		ft_push_first_value(stack_b, stack_a, 'a');
+	}
 }
