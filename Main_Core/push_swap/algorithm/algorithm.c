@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:00 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/20 15:11:41 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:26:53 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,29 @@ void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b)
 	ft_sort_a(stack_a, stack_b);
 	while ((*stack_b))
 		ft_push_first_value(stack_b, stack_a, 'a');
+}
+
+void	ft_sort_three_algorithm(t_stack **list)
+{
+	if ((*list)->value > (*list)->next->value
+		&& (*list)->value < (*list)->next->next->value)
+		ft_swap_first_two(list, 'a');
+	else if ((*list)->value < (*list)->next->value
+		&& (*list)->value > (*list)->next->next->value)
+		ft_reverse_rotate(list, 'a');
+	else if ((*list)->next->value < (*list)->value
+		&& (*list)->next->value > (*list)->next->next->value)
+	{
+		ft_swap_first_two(list, 'a');
+		ft_reverse_rotate(list, 'a');
+	}
+	else if ((*list)->next->value > (*list)->value
+		&& (*list)->next->value > (*list)->next->next->value)
+	{
+		ft_swap_first_two(list, 'a');
+		ft_rotate(list, 'a');
+	}
+	else if ((*list)->value > (*list)->next->value
+		&& (*list)->value > (*list)->next->next->value)
+		ft_rotate(list, 'a');
 }
