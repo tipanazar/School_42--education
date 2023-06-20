@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:51:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/09 18:48:30 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:06:56 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ int	main(int argc, char **argv)
 	ft_free_list(stack_b);
 	return (0);
 }
-

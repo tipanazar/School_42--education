@@ -26,7 +26,8 @@ SRCS = main.c \
 	utils/stack_combined_operations.c \
 	checkers/checkers.c \
 	algorithm/algorithm.c \
-	algorithm/helpers.c 
+	algorithm/helpers.c \
+	algorithm/helpers2.c
 
 all: $(EXECUTABLE)
 
