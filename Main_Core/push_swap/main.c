@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:51:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/20 16:09:54 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:41:57 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,12 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	ft_create_stack(&stack_a, argc, argv);
 	ft_check_is_sort(argv);
-	//*
-	// ft_printf("stack_a: ");
-	// ft_print_list(stack_a);
 	//&
-	if (argc == 4)
-		ft_sort_three_algorithm(&stack_a);
-	// else if (argc <= 6)
-	// 	medium_sort();
-	else
+	// if (argc == 4)
+	// 	ft_sort_three_algorithm(&stack_a);
+	// // else if (argc == 6)
+	// // 	medium_sort();
+	// else
 		ft_main_algorithm(&stack_a, &stack_b);
 	//&
 	ft_printf("\nNew_A: ");

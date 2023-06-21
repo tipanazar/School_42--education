@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:58:55 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/20 14:58:59 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:30:14 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ long	ft_atol(const char *str)
 		if (str[idx] == '-')
 			sign = -1;
 		idx++;
+	}
+	if (!(str[idx] >= '0' && str[idx] <= '9'))
+	{
+		ft_printf("Error\n");
+		exit(1);
 	}
 	while (str[idx] >= '0' && str[idx] <= '9')
 	{
