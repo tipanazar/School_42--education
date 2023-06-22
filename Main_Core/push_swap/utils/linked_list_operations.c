@@ -6,22 +6,37 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:32:56 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/09 18:48:15 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/22 21:08:42 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+int	ft_find_position(char **argv, int argc, int desired_val)
+{
+	int	position;
+
+	position = 1;
+	while (--argc)
+		if (desired_val > ft_atol(argv[argc]))
+			position++;
+	return (position);
+}
+
 void	ft_create_stack(t_stack **list, int argc, char **args_arr)
 {
 	t_stack	*new_node;
 	t_stack	*prev_node;
+	int		idx;
 
+	idx = argc;
 	prev_node = NULL;
-	while (args_arr[--argc] && argc)
+	while (--idx) //remove array from the list
 	{
 		new_node = (t_stack *)malloc(sizeof(t_stack));
-		new_node->value = ft_atol(args_arr[argc]);
+		new_node->value = ft_atol(args_arr[idx]);
+		new_node->position = ft_find_position(args_arr, argc,
+				ft_atol(args_arr[idx]));
 		new_node->next = *list;
 		new_node->prev = prev_node;
 		if (*list)
@@ -43,7 +58,8 @@ void	ft_print_list(t_stack *list)
 	current = list;
 	while (current)
 	{
-		printf("%d ", current->value);
+// 		printf("%d ", current->value);
+		printf("Value: %d\nPosit: %d\n", current->value, current->position);
 		current = current->next;
 	}
 	printf("\n");

@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:22:58 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/21 20:39:46 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/22 21:08:19 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,68 +27,34 @@ int	ft_find_amount(t_stack **list)
 	return (idx);
 }
 
-int	ft_find_doubles_in_num_arr(int *arr, int desired_val)
+// int	ft_find_biggest(t_stack **list)
+// {
+// 	t_stack	*current;
+// 	int		biggest;
+
+// 	current = *list;
+// 	biggest = current->value;
+// 	while (current)
+// 	{
+// 		if (current->value > biggest)
+// 			biggest = current->value;
+// 		current = current->next;
+// 	}
+// 	return biggest;
+// }
+
+int	ft_find_doubles_in_num_arr(int *arr, int desired_val, int length)
 {
 	int	idx;
 
 	idx = -1;
-	while (arr[++idx])
+	while (++idx < length)
 		if (arr[idx] == desired_val)
 			return (1);
 	return (0);
 }
 
-int	*ft_fill_arr_with_smallest(t_stack **list)
-{
-	int	*smallest_nums_arr;
-	int	idx;
-	int	amount;
 
-	idx = -1;
-	if (ft_find_amount(list) > 20)
-		amount = 20;
-	else
-		amount = ft_find_amount(list);
-	smallest_nums_arr = (int *)malloc(sizeof(int) * amount);
-	if (!smallest_nums_arr)
-		return (NULL);
-	while (++idx < amount)
-		smallest_nums_arr[idx] = 2147483647;
-	// ft_printf("Amount: %d\n", amount);	
-	while (1)
-	{
-		idx = -1;
-		while (++idx < amount)
-		{
-			if ((smallest_nums_arr[idx] > (*list)->value)
-				&& !ft_find_doubles_in_num_arr(smallest_nums_arr,
-					(*list)->value))
-				smallest_nums_arr[idx] = (*list)->value;
-		}
-		if (!(*list)->next)
-			break ;
-		*list = (*list)->next;
-	}
-	ft_go_to_beggining(list);
-	return (smallest_nums_arr);
-}
-
-// int	ft_find_quarter(t_stack **list, int *amount)
-// {
-// 	long 	total;
-// 	t_stack	*current;
-
-// 	total = 0;
-// 	current = *list;
-// 	*amount = 0;
-// 	while (current)
-// 	{
-// 		total += current->value;
-// 		*amount += 1;
-// 		current = current->next;
-// 	}
-// 	return (total / *amount / 2);
-// }
 
 // int	ft_find_next_lower_average(t_stack **list, int average)
 // {

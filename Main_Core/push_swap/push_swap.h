@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:08:31 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/21 20:08:44 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/22 20:12:58 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_stack
 {
 	int				value;
+	int 			position;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -41,11 +42,12 @@ void				ft_reverse_rotate_both(t_stack **first, t_stack **second);
 //&
 void				ft_main_algorithm(t_stack **stack_a, t_stack **stack_b);
 void				ft_sort_three_algorithm(t_stack **stack_a);
-int					ft_find_smallest(t_stack **list, int *total, int *biggest);
+// int					ft_find_smallest(t_stack **list, int *total, int *biggest);
 void				ft_move_to_top(t_stack **list, int total, int position,
 						int value);
 int					ft_find_quarter(t_stack **list, int *amount);
-int					*ft_fill_arr_with_smallest(t_stack **list);
+int	*ft_fill_arr_with_smallest(t_stack **list, int *arr_length)
+;
 
 void				ft_count_total(t_stack **list, long long *amount);
 int					ft_find_next_lower_average(t_stack **list, int average);
