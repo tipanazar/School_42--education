@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:08:31 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/22 20:12:58 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:35:50 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct s_stack
 {
 	int				value;
-	int 			position;
+	int				position;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -40,24 +40,14 @@ void				ft_rotate_both(t_stack **first, t_stack **second);
 void				ft_reverse_rotate(t_stack **list, int t_stack_name);
 void				ft_reverse_rotate_both(t_stack **first, t_stack **second);
 //&
-void				ft_main_algorithm(t_stack **stack_a, t_stack **stack_b);
-void				ft_sort_three_algorithm(t_stack **stack_a);
-// int					ft_find_smallest(t_stack **list, int *total, int *biggest);
-void				ft_move_to_top(t_stack **list, int total, int position,
-						int value);
-int					ft_find_quarter(t_stack **list, int *amount);
-int	*ft_fill_arr_with_smallest(t_stack **list, int *arr_length)
-;
-
-void				ft_count_total(t_stack **list, long long *amount);
-int					ft_find_next_lower_average(t_stack **list, int average);
-int					ft_find_amount(t_stack **list);
+void				ft_main_algorithm(t_stack **stack_a, t_stack **stack_b,
+						int argc);
+int					ft_find_next(t_stack **list, int max_position,
+						int *f_position, int *l_position);
 void				ft_prepare_b(t_stack **list, int value);
 void				ft_reset_b(t_stack **list);
-void				ft_sort_a(t_stack **stack_a, t_stack **stack_b);
-void				ft_prepare_b_middleware(t_stack **list, int position,
-						int amount);
-void				ft_reset_b_middleware(t_stack **list, int position,
-						int amount);
+// void				ft_sort_three_algorithm(t_stack **stack_a);
+// int					ft_find_smallest(t_stack **list, int *total,
+// int *biggest);
 
 #endif

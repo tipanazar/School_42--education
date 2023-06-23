@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_operations.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:32:56 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/22 21:08:42 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:17:51 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_create_stack(t_stack **list, int argc, char **args_arr)
 
 	idx = argc;
 	prev_node = NULL;
-	while (--idx) //remove array from the list
+	while (--idx)
 	{
 		new_node = (t_stack *)malloc(sizeof(t_stack));
 		new_node->value = ft_atol(args_arr[idx]);
@@ -58,8 +58,8 @@ void	ft_print_list(t_stack *list)
 	current = list;
 	while (current)
 	{
-// 		printf("%d ", current->value);
-		printf("Value: %d\nPosit: %d\n", current->value, current->position);
+		printf("%d ", current->value);
+		// printf("Value: %d\nPosit: %d\n", current->value, current->position);
 		current = current->next;
 	}
 	printf("\n");

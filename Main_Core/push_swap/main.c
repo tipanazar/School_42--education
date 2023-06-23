@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:51:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/21 14:41:57 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:48:40 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	// // else if (argc == 6)
 	// // 	medium_sort();
 	// else
-		ft_main_algorithm(&stack_a, &stack_b);
+		ft_main_algorithm(&stack_a, &stack_b, argc);
 	//&
 	ft_printf("\nNew_A: ");
 	ft_print_list(stack_a);
