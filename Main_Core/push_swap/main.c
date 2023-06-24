@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:51:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/23 20:48:40 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/24 19:41:10 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	main(int argc, char **argv)
 	// else
 		ft_main_algorithm(&stack_a, &stack_b, argc);
 	//&
-	ft_printf("\nNew_A: ");
-	ft_print_list(stack_a);
-	ft_printf("New_B: ");
-	ft_print_list(stack_b);
+	// ft_printf("\nNew_A: ");
+	// ft_print_list(stack_a);
+	// ft_printf("New_B: ");
+	// ft_print_list(stack_b);
 	//*
 	ft_free_list(stack_a);
 	ft_free_list(stack_b);

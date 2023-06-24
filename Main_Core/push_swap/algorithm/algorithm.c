@@ -3,21 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:00 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/23 20:38:52 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/24 19:39:51 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_work_b(t_stack **stack_a, t_stack **stack_b)
+// void	ft_work_a(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	ft_prepare_b(stack_a, (*stack_b)->value);
+// 	ft_push_first_value(stack_b, stack_a, 'a');
+// 	ft_reset_b(stack_b);
+// 	// *amount -= 1;
+// }
+
+void	ft_fill_a(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_prepare_b(stack_b, (*stack_a)->value);
-	ft_push_first_value(stack_a, stack_b, 'b');
-	ft_reset_b(stack_b);
-	// *amount -= 1;
+	int	position;
+	int	amount;
+
+	while (*stack_b)
+	{
+		ft_find_biggest(stack_b, &position, &amount);
+		if (position <= amount / 2)
+			while (position--)
+				ft_rotate(stack_b, 'b');
+		else
+			while (amount - position++)
+				ft_reverse_rotate(stack_b, 'b');
+		ft_push_first_value(stack_b, stack_a, 'a');
+	}
 }
 
 void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b, int argc)
@@ -27,7 +45,6 @@ void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b, int argc)
 	int	max_position;
 	int	step;
 
-	(void)stack_b;
 	step = 1;
 	if (argc < 251)
 		max_position = 20;
@@ -41,17 +58,18 @@ void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b, int argc)
 			step++;
 			continue ;
 		}
-		if (f_position < l_position)
+		// ft_printf("F_position: %d\nL_position: %d\n\n",
+		// f_position,		l_position);
+		if ((f_position < l_position) || (f_position == l_position
+				&& f_position <= ft_count_amount(stack_a) / 2))
 			while (--f_position)
 				ft_rotate(stack_a, 'a');
 		else
 			while (l_position--)
 				ft_reverse_rotate(stack_a, 'a');
-		ft_work_b(stack_a, stack_b);	
-		// break;
+		ft_push_first_value(stack_a, stack_b, 'b');
 	}
-	while(*stack_b)
-		ft_push_first_value(stack_b, stack_a, 'a');
+	ft_fill_a(stack_a, stack_b);
 }
 
 // void	ft_sort_three_algorithm(t_stack **list)
