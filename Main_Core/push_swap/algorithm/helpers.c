@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:22:58 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/24 19:25:08 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:16:47 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,16 @@ int	ft_find_next(t_stack **list, int max_position, int *f_position,
 
 	flag = 0;
 	*f_position = 0;
-	*l_position = 0;
+	*l_position = 1;
+	// ft_printf("Max position: %d\n", max_position);
 	while (1)
 	{
-		*f_position += 1;
 		if ((*list)->position <= max_position)
 		{
 			flag = 1;
 			break ;
 		}
+		*f_position += 1;
 		if ((*list)->next)
 			*list = (*list)->next;
 		else
@@ -52,12 +53,12 @@ int	ft_find_next(t_stack **list, int max_position, int *f_position,
 		*list = (*list)->next;
 	while (1)
 	{
-		*l_position += 1;
 		if ((*list)->position <= max_position)
 		{
 			flag = 1;
 			break ;
 		}
+		*l_position += 1;
 		if ((*list)->prev)
 			*list = (*list)->prev;
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_operations.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:32:56 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/23 20:17:51 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/06/24 20:33:29 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
