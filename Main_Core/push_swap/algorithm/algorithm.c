@@ -6,29 +6,11 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:00 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/26 19:25:02 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:22:06 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void	ft_fill_a(t_stack **stack_a, t_stack **stack_b)
-{
-	int	position;
-	int	amount;
-
-	while (*stack_b)
-	{
-		ft_find_biggest(stack_b, &position, &amount);
-		if (position <= amount / 2)
-			while (position--)
-				ft_rotate(stack_b, 'b');
-		else
-			while (amount - position++)
-				ft_reverse_rotate(stack_b, 'b');
-		ft_push_first_value(stack_b, stack_a, 'a');
-	}
-}
 
 void	ft_algorithm_loop(t_stack **stack_a, t_stack **stack_b, int max_range,
 		int max_position)
@@ -38,17 +20,23 @@ void	ft_algorithm_loop(t_stack **stack_a, t_stack **stack_b, int max_range,
 	int	l_position;
 
 	step = 1;
+	(void) max_position;
+	// while (*stack_a)
 	while ((*stack_a)->next)
 	{
 		if (max_range * step > max_position)
+		{
 			max_range = max_position; // ! ! ! ! !
+			step = 1;
+		}
 		if (!ft_find_next(stack_a, max_range * step, &f_position, &l_position))
 		{
 			step++;
 			continue ;
 		}
-		if ((f_position < l_position) || (f_position == l_position
-				&& f_position <= ft_count_amount(stack_a) / 2))
+		// if ((f_position < l_position) || (f_position == l_position
+		// 		&& f_position <= ft_count_amount(stack_a) / 2))
+		if (f_position < l_position)
 			while (f_position--)
 				ft_rotate(stack_a, 'a');
 		else
@@ -67,7 +55,7 @@ void	ft_main_algorithm(t_stack **stack_a, t_stack **stack_b, int argc)
 	max_position = --argc;
 	step = 1;
 	if (argc <= 250)
-		max_range = 20;
+		max_range = 5;
 	else if (argc <= 1000)
 		max_range = 40;
 	else

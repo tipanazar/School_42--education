@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:08:31 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/24 16:13:23 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:40:39 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,9 @@ void				ft_main_algorithm(t_stack **stack_a, t_stack **stack_b,
 						int argc);
 int					ft_find_next(t_stack **list, int max_position,
 						int *f_position, int *l_position);
-void	ft_find_biggest(t_stack **list, int *position, int *amount);
+void				ft_find_biggest(t_stack **list, int *position, int *amount);
 int					ft_count_amount(t_stack **list);
-// void				ft_prepare_b(t_stack **list, int value);
-// void				ft_reset_b(t_stack **list);
-// void				ft_sort_three_algorithm(t_stack **stack_a);
-// int					ft_find_smallest(t_stack **list, int *total,
-// int *biggest);
+void				ft_fill_a(t_stack **stack_a, t_stack **stack_b);
+int					ft_amount_less_max_range(t_stack **list, int max_range);
 
 #endif
