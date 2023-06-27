@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "type_traits": "c",
+        "push_swap.h": "c",
+        "bitset": "c",
+        "ranges": "c",
+        "regex": "c",
+        "list": "c"
+    }
+}

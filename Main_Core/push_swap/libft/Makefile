@@ -20,7 +20,6 @@ SRCS =  $(SRC_FOLDER)ft_isalnum.c      \
 		$(SRC_FOLDER)ft_bzero.c 	   \
 		$(SRC_FOLDER)ft_isascii.c      \
 		$(SRC_FOLDER)ft_memcpy.c       \
-		$(SRC_FOLDER)ft_atol.c 	       \
 		$(SRC_FOLDER)ft_strnstr.c      \
 		$(SRC_FOLDER)ft_toupper.c      \
 		$(SRC_FOLDER)ft_isdigit.c      \

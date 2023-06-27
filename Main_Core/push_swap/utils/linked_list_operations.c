@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:32:56 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/26 17:37:32 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:18:25 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ void	ft_print_list(t_stack *list)
 	while (current)
 	{
 		printf("%d ", current->value);
-		// printf("Value: %d\nPosit: %d\n\n", current->value,
-		// 		current->position);
-				current = current->next;
+		current = current->next;
 	}
 	printf("\n");
 }
