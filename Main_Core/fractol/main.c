@@ -6,63 +6,52 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:49 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/03 19:58:15 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:45:54 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-typedef struct s_vars
+void	ft_define_vars(t_vars *vars)
 {
-	void	*mlx;
-	void	*win;
-}			t_vars;
+	vars->mlx = mlx_init();
+	vars->win = mlx_new_window(vars->mlx, 800, 600, "Glory to Ukraine!");
+	vars->f_idx = -1;
+	vars->s_idx = 0;
+	vars->blue = 0x0000ff;
+	vars->yellow = 0xffff00;
+	vars->height = 250;
+	vars->width = 700;
+}
 
-void	ft_close(int keycode, t_vars *vars)
+void	ft_render(t_vars *vars)
 {
-	ft_printf("keycode: %d\n", keycode);
-	if (keycode == 6513)
+	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
+	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
+			&vars->line_length, &vars->endian);
+	while (++vars->f_idx <= vars->width)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(0);
+		while (++vars->s_idx <= vars->height)
+		{
+			my_mlx_pixel_put(vars, 50 + vars->f_idx, 50 + vars->s_idx,
+					vars->blue);
+			my_mlx_pixel_put(vars, 50 + vars->f_idx, 300 + vars->s_idx,
+					vars->yellow);
+		}
+		vars->s_idx = 0;
 	}
+	vars->f_idx = -1;
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }
 
 int	main(void)
 {
 	t_vars	vars;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	mlx_hook(vars.win, 2, 1L << 0, ft_close, &vars);
+	ft_define_vars(&vars);
+	ft_render(&vars);
+	mlx_hook(vars.win, 2, 1L << 0, ft_handle_key, &vars);
+	mlx_hook(vars.win, 17, 0, ft_close, &vars);
+	mlx_mouse_hook(vars.win, ft_mouse_handle, &vars);
 	mlx_loop(vars.mlx);
 }
-
-// int	main(void)
-// {
-// 	int		f_idx;
-// 	int		s_idx;
-// 	int		blue;
-// 	int		yellow;
-// 	void	*mlx_window;
-// 	void	*mlx_connection;
-
-// 	f_idx = -1;
-// 	s_idx = 0;
-// 	blue = 0x0000ff;
-// 	yellow = 0xffff00;
-// 	mlx_connection = mlx_init();
-// 	mlx_window = mlx_new_window(mlx_connection, 800, 600, "Glory to Ukraine!");
-// 	while (++f_idx <= 700)
-// 	{
-// 		while (++s_idx <= 250)
-// 		{
-// 			mlx_pixel_put(mlx_connection, mlx_window, 50 + f_idx, 50 + s_idx,
-// 					blue + s_idx);
-// 			mlx_pixel_put(mlx_connection, mlx_window, 50 + f_idx, 300 + s_idx,
-// 					yellow);
-// 		}
-// 		s_idx = 0;
-// 	}
-// 	mlx_loop(mlx_connection);
-// }
