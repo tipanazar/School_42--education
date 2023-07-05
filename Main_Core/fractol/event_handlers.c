@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:38:14 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/04 19:43:21 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:49:14 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,34 @@ int	ft_handle_key(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	ft_mouse_handle(int button, int x, int y, t_vars *vars)
+int	ft_mouse_handler(int button, int x, int y, t_vars *vars)
 {
-    (void)x;
-    (void)y;
+	(void)x;
+	(void)y;
 	// printf("Button: %d\nX: %d\nY: %d\n\n", button, x, y);
-	if (button == 1)
+	if (button == 4)
 	{
-		vars->height /= 2;
-		vars->width /= 2;
-		mlx_destroy_image(vars->mlx, vars->img);
-		ft_render(vars);
-	}
-    else if (button == 3)
-    {
-        vars->height *= 2;
-        vars->width *= 2;
-        mlx_destroy_image(vars->mlx, vars->img);
-        ft_render(vars);
-    }
-	else if (button == 4)
-	{
-		vars->blue += 10;
-		vars->yellow += 10;
+		if (vars->gap - 5 > 0)
+			vars->gap -= 5;
 		mlx_destroy_image(vars->mlx, vars->img);
 		ft_render(vars);
 	}
 	else if (button == 5)
 	{
-		vars->blue -= 10;
-		vars->yellow -= 10;
+		if (vars->gap + 5 <= WIDTH)
+			vars->gap += 5;
+		mlx_destroy_image(vars->mlx, vars->img);
+		ft_render(vars);
+	}
+	else if (button == 1)
+	{
+		vars->color += 20;
+		mlx_destroy_image(vars->mlx, vars->img);
+		ft_render(vars);
+	}
+	else if (button == 3)
+	{
+		vars->color -= 20;
 		mlx_destroy_image(vars->mlx, vars->img);
 		ft_render(vars);
 	}
