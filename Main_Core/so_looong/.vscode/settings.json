@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "cmath": "c",
+        "begin_code.h": "c",
+        "mlx.h": "c"
+    }
+}
