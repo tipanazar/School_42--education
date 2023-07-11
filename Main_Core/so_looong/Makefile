@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+         #
+#    By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 17:04:44 by nkarpeko          #+#    #+#              #
-#    Updated: 2023/07/02 18:18:36 by tipanazar        ###   ########.fr        #
+#    Updated: 2023/07/11 17:53:08 by nkarpeko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 CFLAGS =  -Wall -Werror -Wextra
 RM = rm -f
 
-NAME = fractol
+NAME = so_long
 COLOR_GREEN=\033[0;32m
 COLOR_END = \033[0m
 LIBFTDIR = ./libft

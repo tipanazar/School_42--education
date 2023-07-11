@@ -6,12 +6,12 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:47 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/07 19:53:44 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:53:35 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "./libft/libft.h"
 # include "./mlx_linux/mlx.h"
