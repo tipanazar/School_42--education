@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:38:37 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/13 18:56:52 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/13 20:40:26 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	ft_throw_error(char *error)
 
 void	ft_define_vars(t_vars *vars, t_game *game)
 {
-	vars->width = ft_strlen(game->mapdata[0]) * 64;
-	vars->height = ft_char_arr_length(game->mapdata) * 64;
+	(void) game;
+	vars->width = ft_strlen(vars->mapdata[0]) * 64;
+	vars->height = ft_char_arr_length(vars->mapdata) * 64;
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->width, vars->height, "Window");
 	vars->texture_size = 64;
@@ -46,12 +47,10 @@ int	ft_count_lines_fd(char *map_path)
 	return (lines);
 }
 
-// int ft_count_lines(char **map)
-// {
-// 	int		lines;
-
-// 	lines = 0;
-// 	while (map[lines])
-// 		lines++;
-// 	return (lines);
-// }
+void ft_clear_all(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	ft_free_char_arr(vars->mapdata);
+}
