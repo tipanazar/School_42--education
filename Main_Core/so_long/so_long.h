@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:47 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/13 13:16:42 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:51:57 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,9 @@
 
 # include "./libft/libft.h"
 # include "./mlx_linux/mlx.h"
-# include <math.h>
+# include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-# define WIDTH 1500
-# define HEIGHT 1500
-
-// #define WIDTH 800
-// #define HEIGHT 600
-# define MAX_ITERATIONS 1000
 
 typedef struct s_vars
 {
@@ -32,6 +25,9 @@ typedef struct s_vars
 	char	*addr;
 	void	*mlx;
 	void	*win;
+	int		width;
+	int		height;
+	int		texture_size;
 
 }			t_vars;
 
@@ -54,10 +50,14 @@ typedef struct s_game
 }			t_game;
 
 // void		my_mlx_pixel_put(t_vars *data, int x, int y, int color);
-int			ft_mouse_handler(int button, int x, int y, t_vars *vars);
-int			ft_handle_key(int keycode, t_vars *vars);
-int			ft_close(t_vars *vars);
-void		ft_render(t_vars *vars);
+// int			ft_mouse_handler(int button, int x, int y, t_vars *vars);
+int			ft_handle_key(int keycode, t_vars *vars, t_game *game);
+int			ft_close_win(t_vars *vars, t_game *game);
+void		ft_define_vars(t_vars *vars, t_game *game);
+void		ft_render(t_vars *vars, t_game *game);
+void		ft_throw_error(char *error);
+int			ft_count_lines_fd(char *map_path);
+// int			ft_count_lines(char **map);
 //
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:50:54 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/06/27 18:03:34 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:50:26 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ int					ft_printf(const char *str, ...);
 int					ft_type_identifier(char ch);
 void				ft_type_distributor_middleware(va_list args, char ch,
 						int *length);
+void				ft_free_char_arr(char **arr);
+int					ft_char_arr_length(char **arr);
 
 #endif
