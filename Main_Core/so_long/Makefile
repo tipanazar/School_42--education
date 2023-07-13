@@ -6,7 +6,7 @@
 #    By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 17:04:44 by nkarpeko          #+#    #+#              #
-#    Updated: 2023/07/11 17:53:08 by nkarpeko         ###   ########.fr        #
+#    Updated: 2023/07/13 13:22:34 by nkarpeko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ $(NAME): $(LIBFT) $(MINILIBX)
 	@cp $(MINILIBX) $@
 	@cp $(LIBFT) $@
 	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MINILIBXCOMPILE) -o $(NAME)
-	@make -s clean
 	@echo "$(COLOR_GREEN)\n✅---COMPILING IS DONE---✅\n$(COLOR_END)"
 
 $(LIBFT):

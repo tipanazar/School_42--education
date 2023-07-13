@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:38:14 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/12 17:55:30 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:16:02 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,21 @@ int	ft_mouse_handler(int button, int x, int y, t_vars *vars)
 	// printf("Button: %d\nX: %d\nY: %d\n\n", button, x, y);
 	if (button == 4)
 	{
-		if (vars->gap - 5 > 0)
-			vars->gap -= 5;
 		mlx_destroy_image(vars->mlx, vars->img);
 		ft_render(vars);
 	}
 	else if (button == 5)
 	{
-		if (vars->gap + 5 <= WIDTH)
-			vars->gap += 5;
 		mlx_destroy_image(vars->mlx, vars->img);
 		ft_render(vars);
 	}
 	else if (button == 1)
 	{
-		vars->color += 20;
 		mlx_destroy_image(vars->mlx, vars->img);
 		ft_render(vars);
 	}
 	else if (button == 3)
 	{
-		vars->color -= 20;
 		mlx_destroy_image(vars->mlx, vars->img);
 		ft_render(vars);
 	}

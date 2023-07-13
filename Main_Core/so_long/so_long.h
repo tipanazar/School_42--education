@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:47 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/12 15:38:16 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:16:42 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,9 @@ typedef struct s_vars
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 	void	*mlx;
 	void	*win;
-	int		idx;
-	int		color;
-	int		gap;
-	//
-	double	real;
-	double	imag;
+
 }			t_vars;
 
 typedef struct s_game
@@ -61,12 +53,11 @@ typedef struct s_game
 	int		game_over;
 }			t_game;
 
-void		my_mlx_pixel_put(t_vars *data, int x, int y, int color);
+// void		my_mlx_pixel_put(t_vars *data, int x, int y, int color);
 int			ft_mouse_handler(int button, int x, int y, t_vars *vars);
 int			ft_handle_key(int keycode, t_vars *vars);
 int			ft_close(t_vars *vars);
 void		ft_render(t_vars *vars);
 //
-void		hsv_to_rgb(double h, double s, double v, double rgb[3]);
 
 #endif

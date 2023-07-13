@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:49 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/12 18:22:51 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:20:48 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,32 @@ void	ft_define_vars(t_vars *vars)
 {
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "Window");
-	vars->idx = -1;
-	vars->color = 0xffff00;
-	vars->gap = 100;
 }
 
 void	ft_loop(t_vars *vars)
 {
-	(void) vars;
+	int	pos;
+	int zero = 0;
+	int	iter;
+
+	iter = -1;
+	pos = 0;
+	char *path_arr[] = {"./files/textures/w221.xpm",
+						"./files/textures/autobanh.xpm",
+						"./files/textures/canister.xpm",
+						"./files/textures/grass.xpm"};
+	while (++iter < 4)
+	{
+		vars->img = mlx_xpm_file_to_image(vars->mlx, path_arr[iter], &zero,
+				&zero);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img, pos, 0);
+		pos += 64;
+	}
 }
-
-
 
 void	ft_render(t_vars *vars)
 {
-	int pos = 0;
-	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
-			&vars->line_length, &vars->endian);
-	// ft_loop(vars);
-
-    vars->img = mlx_xpm_file_to_image(vars->mlx, "./files/textures/w221.xpm", &pos, &pos);
-
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	ft_loop(vars);
 }
 
 int	main(void)
@@ -52,4 +55,3 @@ int	main(void)
 	mlx_mouse_hook(vars.win, ft_mouse_handler, &vars);
 	mlx_loop(vars.mlx);
 }
-
