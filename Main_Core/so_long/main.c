@@ -6,7 +6,7 @@
 /*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:49 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/15 19:21:09 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/07/15 19:37:33 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(void)
 {
 	t_vars	vars;
 
-	ft_read_map(&vars, "./files/maps/test_map.ber");
+	ft_read_map(&vars, "./files/maps/map3.ber");
 	ft_define_vars(&vars);
 	ft_render(&vars);
 	mlx_hook(vars.win, 2, 1L << 0, ft_handle_key, &vars);

@@ -91,7 +91,7 @@ void	ft_move_player_y(t_vars *vars, int position) // position == 1 or -1
 	{
 		if (vars->mapdata[y_idx + position][x_idx] == 'C')
 			vars->collectibles--;
-		if (vars->mapdata[y_idx][x_idx + position] == 'E')
+		if (vars->mapdata[y_idx + position][x_idx] == 'E')
 		{
 			ft_printf("You won!\n");
 			ft_clear_all(vars);
