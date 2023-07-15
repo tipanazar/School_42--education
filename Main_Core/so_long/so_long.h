@@ -6,7 +6,7 @@
 /*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:47 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/15 19:20:04 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/07/15 20:14:37 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_vars
 	int		player_x;
 	int		player_y;
 	int		collectibles;
+	int		movements;
 	// int		score;
 	// int		current_score;
 	// void	*wall;

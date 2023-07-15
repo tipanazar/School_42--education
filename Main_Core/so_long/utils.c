@@ -6,7 +6,7 @@
 /*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:38:37 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/15 19:19:00 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/07/15 20:20:25 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_define_vars(t_vars *vars)
 	vars->width = ft_strlen(vars->mapdata[0]) * vars->texture_size;
 	vars->height = ft_char_arr_length(vars->mapdata) * vars->texture_size;
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, vars->width, vars->height, "Window");
+	vars->win = mlx_new_window(vars->mlx, vars->width, vars->height, "./so_long");
 }
 
 void	ft_clear_all(t_vars *vars)

@@ -76,6 +76,8 @@ void	ft_move_player_x(t_vars *vars, int position) // position == 1 or -1
 		vars->mapdata[y_idx][x_idx + position] = 'P';
 		vars->mapdata[y_idx][x_idx] = '0';
 		vars->player_x += position;
+		vars->movements++;
+		ft_printf("Movements: %d\n", vars->movements);
 		mlx_clear_window(vars->mlx, vars->win);
 		ft_render(vars);
 	}
@@ -100,6 +102,8 @@ void	ft_move_player_y(t_vars *vars, int position) // position == 1 or -1
 		vars->mapdata[y_idx + position][x_idx] = 'P';
 		vars->mapdata[y_idx][x_idx] = '0';
 		vars->player_y += position;
+		vars->movements++;
+		ft_printf("Movements: %d\n", vars->movements);
 		mlx_clear_window(vars->mlx, vars->win);
 		ft_render(vars);
 	}

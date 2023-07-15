@@ -6,7 +6,7 @@
 /*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:49 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/15 19:37:33 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/07/15 20:18:56 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_return_id(char ch)
 {
-	if (ch == '0')
-		return (NULL);
-	else if (ch == '1')
-		return ("./files/textures/grass.xpm");
+	if (ch == '1')
+		return ("./files/textures/wall.xpm");
 	else if (ch == 'C')
 		return ("./files/textures/canister.xpm");
 	else if (ch == 'P')
 		return ("./files/textures/w221.xpm");
 	else if (ch == 'E')
 		return ("./files/textures/autobanh.xpm");
+	else if (ch == '0')
+		return ("./files/textures/background.xpm");
 	else
 		return (NULL);
 }
@@ -38,7 +38,7 @@ void	ft_loop(t_vars *vars, char *map, int line)
 	idx = -1;
 	while (map[++idx])
 	{
-		if(map[idx] == 'P')
+		if (map[idx] == 'P')
 		{
 			vars->player_x = idx;
 			vars->player_y = line / vars->texture_size;
@@ -73,7 +73,7 @@ int	main(void)
 {
 	t_vars	vars;
 
-	ft_read_map(&vars, "./files/maps/map3.ber");
+	ft_read_map(&vars, "./files/maps/map6.ber");
 	ft_define_vars(&vars);
 	ft_render(&vars);
 	mlx_hook(vars.win, 2, 1L << 0, ft_handle_key, &vars);
