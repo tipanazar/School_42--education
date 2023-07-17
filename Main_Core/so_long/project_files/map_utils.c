@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:13:03 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 19:15:57 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/17 21:00:18 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	ft_move_player_x(t_vars *vars, int position)
 		vars->player_x += position;
 		vars->movements++;
 		ft_printf("Movements: %d\n", vars->movements);
-		mlx_clear_window(vars->mlx, vars->win);
 		ft_render(vars);
 	}
 }
@@ -128,7 +127,6 @@ void	ft_move_player_y(t_vars *vars, int position)
 		vars->player_y += position;
 		vars->movements++;
 		ft_printf("Movements: %d\n", vars->movements);
-		mlx_clear_window(vars->mlx, vars->win);
 		ft_render(vars);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:49:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 19:21:13 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/17 21:52:24 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,19 @@ void	ft_map_checker_middleware(t_vars *vars, int *exits, int *players)
 		if (vars->mapdata[arr_idx][idx] != '1')
 			ft_throw_error("Map is not closed", vars);
 }
+
+// void	ft_flood_fill(char **map, int x, int y, int *i)
+// {
+// 	if (map[y][x] == '1' || map[y][x] == 'F')
+// 		return ;
+// 	if (map[y][x] == 'C' || map[y][x] == 'E')
+// 		*i += 1;
+// 	map[y][x] = 'F';
+// 	ft_flood_fill(map, x + 1, y, i);
+// 	ft_flood_fill(map, x - 1, y, i);
+// 	ft_flood_fill(map, x, y + 1, i);
+// 	ft_flood_fill(map, x, y - 1, i);
+// }
 
 void	ft_map_checker(t_vars *vars)
 {
