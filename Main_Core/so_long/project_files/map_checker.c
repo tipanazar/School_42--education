@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:49:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 18:16:45 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:21:13 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@ void	ft_check_type(char ch, t_vars *vars, int *exits, int *players)
 		*players += 1;
 	else if (ch == 'E')
 		*exits += 1;
+	else if (ch != '1' && ch != '0')
+		ft_throw_error("Map is not valid", vars);
 }
 
-void	ft_check_path(char *path, t_vars *vars)
+void	ft_check_path(t_vars *vars)
 {
 	char	**splitted_path;
 	int		arr_idx;
 	int		fd;
 
-	splitted_path = ft_split(path, '.');
+	splitted_path = ft_split(vars->map_path, '.');
 	arr_idx = -1;
 	while (splitted_path[arr_idx + 1])
 		arr_idx++;
@@ -38,9 +40,9 @@ void	ft_check_path(char *path, t_vars *vars)
 		ft_throw_error("Map file is not .ber", vars);
 	}
 	ft_free_char_arr(splitted_path);
-	fd = open(path, O_RDONLY);
+	fd = open(vars->map_path, O_RDONLY);
 	if (fd == -1)
-		ft_throw_error("Map file not found", vars);
+		ft_throw_error("Map not found", vars);
 	close(fd);
 }
 
@@ -70,19 +72,19 @@ void	ft_map_checker_middleware(t_vars *vars, int *exits, int *players)
 			ft_throw_error("Map is not closed", vars);
 }
 
-void	ft_map_checker(t_vars *vars, char *path)
+void	ft_map_checker(t_vars *vars)
 {
-	int	idx;
-	int	arr_idx;
-	int	exits;
-	int	players;
+	size_t	map_len;
+	int		arr_idx;
+	int		exits;
+	int		players;
 
-	idx = -1;
+	map_len = 0;
 	arr_idx = 0;
 	exits = 0;
 	players = 0;
-	ft_check_path(path, vars);
-	ft_read_map(vars, path);
+	ft_check_path(vars);
+	ft_read_map(vars);
 	ft_map_checker_middleware(vars, &exits, &players);
 	if (exits != 1)
 		ft_throw_error("Map is not valid, check amount of exits", vars);
@@ -90,4 +92,8 @@ void	ft_map_checker(t_vars *vars, char *path)
 		ft_throw_error("Map is not valid, check amount of players", vars);
 	else if (vars->collectibles == 0)
 		ft_throw_error("Map is not valid, check amount of collectibles", vars);
+	map_len = ft_strlen(vars->mapdata[0]);
+	while (vars->mapdata[++arr_idx])
+		if (map_len != ft_strlen(vars->mapdata[arr_idx]))
+			ft_throw_error("Map size is invalid", vars);
 }

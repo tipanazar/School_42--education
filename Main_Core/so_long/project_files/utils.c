@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:38:37 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 17:44:53 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:14:08 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_define_vars(t_vars *vars)
 	vars->movements = 0;
 	vars->mlx = NULL;
 	vars->win = NULL;
+	vars->map_path = NULL;
+	vars->mapdata = NULL;
 }
 
 void	ft_clear_all(t_vars *vars)
@@ -43,5 +45,8 @@ void	ft_clear_all(t_vars *vars)
 		mlx_destroy_display(vars->mlx);
 		free(vars->mlx);
 	}
-	ft_free_char_arr(vars->mapdata);
+	if (vars->map_path)
+		free(vars->map_path);
+	if (vars->mapdata)
+		ft_free_char_arr(vars->mapdata);
 }

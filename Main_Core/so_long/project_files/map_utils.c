@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:13:03 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 18:11:41 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:15:57 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_read_map_middleware(t_vars *vars, int fd)
 	vars->mapdata[arr_idx] = NULL;
 }
 
-void	ft_read_map(t_vars *vars, char *map_path)
+void	ft_read_map(t_vars *vars)
 {
 	int	idx;
 	int	fd;
@@ -66,11 +66,17 @@ void	ft_read_map(t_vars *vars, char *map_path)
 
 	arr_idx = 0;
 	idx = -1;
+	if (!ft_count_lines_fd(vars->map_path))
+	{
+		ft_printf("Empty map\n");
+		free(vars->map_path);
+		exit(1);
+	}
 	vars->mapdata = (char **)malloc(sizeof(char *)
-			* (ft_count_lines_fd(map_path) + 1));
+			* (ft_count_lines_fd(vars->map_path) + 1));
 	if (!vars->mapdata)
 		ft_throw_error("Malloc error", vars);
-	fd = open(map_path, O_RDONLY);
+	fd = open(vars->map_path, O_RDONLY);
 	ft_read_map_middleware(vars, fd);
 	close(fd);
 	vars->width = ft_strlen(vars->mapdata[0]) * vars->texture_size;

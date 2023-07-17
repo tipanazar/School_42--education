@@ -6,7 +6,7 @@
 /*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:49 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 18:06:09 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:52:48 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,15 @@ void	ft_render(t_vars *vars)
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
-	char	*path;
 
 	ft_define_vars(&vars);
 	if (argc != 2)
 		ft_throw_error("Wrong amount of arguments", &vars);
-	path = ft_strjoin("../files/maps/", argv[1]);
-	ft_map_checker(&vars, path);
+	vars.map_path = ft_strjoin("../files/maps/", argv[1]);
+	ft_map_checker(&vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.width, vars.height,
 			"./so_long");
-	free(path);
 	ft_render(&vars);
 	mlx_hook(vars.win, 2, 1L << 0, ft_handle_key, &vars);
 	mlx_hook(vars.win, 17, 0, ft_close_win, &vars);
