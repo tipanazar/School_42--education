@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:13:03 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 21:00:18 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:02:53 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_count_lines_fd(char *map_path)
 	return (lines);
 }
 
-void	ft_read_map_middleware(t_vars *vars, int fd)
+void	ft_read_map_middleware(t_vars *vars, char **map, int fd)
 {
 	char	*line;
 	int		idx;
@@ -42,45 +42,40 @@ void	ft_read_map_middleware(t_vars *vars, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		vars->mapdata[arr_idx] = (char *)malloc(sizeof(char) * (ft_strlen(line)
-					+ 1));
-		if (!vars->mapdata[arr_idx])
+		map[arr_idx] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
+		if (!map[arr_idx])
 			ft_throw_error("Malloc error", vars);
 		while (line[++idx] && line[idx] != '\n')
 		{
-			vars->mapdata[arr_idx][idx] = line[idx];
+			map[arr_idx][idx] = line[idx];
 		}
-		vars->mapdata[arr_idx++][idx] = '\0';
+		map[arr_idx++][idx] = '\0';
 		free(line);
 		line = get_next_line(fd);
 		idx = -1;
 	}
-	vars->mapdata[arr_idx] = NULL;
+	map[arr_idx] = NULL;
 }
 
-void	ft_read_map(t_vars *vars)
+char	**ft_read_map(t_vars *vars)
 {
-	int	idx;
-	int	fd;
-	int	arr_idx;
+	int		fd;
+	char	**map;
 
-	arr_idx = 0;
-	idx = -1;
 	if (!ft_count_lines_fd(vars->map_path))
 	{
 		ft_printf("Empty map\n");
 		free(vars->map_path);
 		exit(1);
 	}
-	vars->mapdata = (char **)malloc(sizeof(char *)
-			* (ft_count_lines_fd(vars->map_path) + 1));
-	if (!vars->mapdata)
+	map = (char **)malloc(sizeof(char *) * (ft_count_lines_fd(vars->map_path)
+				+ 1));
+	if (!map)
 		ft_throw_error("Malloc error", vars);
 	fd = open(vars->map_path, O_RDONLY);
-	ft_read_map_middleware(vars, fd);
+	ft_read_map_middleware(vars, map, fd);
 	close(fd);
-	vars->width = ft_strlen(vars->mapdata[0]) * vars->texture_size;
-	vars->height = ft_char_arr_length(vars->mapdata) * vars->texture_size;
+	return (map);
 }
 
 void	ft_move_player_x(t_vars *vars, int position)

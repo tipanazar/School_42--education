@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:38:14 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 17:44:16 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:27:36 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,17 @@ int	ft_handle_key(int keycode, t_vars *vars)
 	else if (keycode == 97 || keycode == 65361)
 		ft_move_player_x(vars, -1);
 	return (0);
+}
+
+/* It is not related to this file, i put this here just because of norminette */
+void	ft_check_type(char ch, t_vars *vars, int *exits, int *players)
+{
+	if (ch == 'C')
+		vars->collectibles++;
+	else if (ch == 'P')
+		*players += 1;
+	else if (ch == 'E')
+		*exits += 1;
+	else if (ch != '1' && ch != '0')
+		ft_throw_error("Map is not valid", vars);
 }

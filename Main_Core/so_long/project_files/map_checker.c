@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:49:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/17 21:52:24 by nkarpeko         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:39:30 by tipanazar        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_check_type(char ch, t_vars *vars, int *exits, int *players)
-{
-	if (ch == 'C')
-		vars->collectibles++;
-	else if (ch == 'P')
-		*players += 1;
-	else if (ch == 'E')
-		*exits += 1;
-	else if (ch != '1' && ch != '0')
-		ft_throw_error("Map is not valid", vars);
-}
 
 void	ft_check_path(t_vars *vars)
 {
@@ -46,6 +34,16 @@ void	ft_check_path(t_vars *vars)
 	close(fd);
 }
 
+void	ft_check_map_side(t_vars *vars, int arr_idx)
+{
+	int	idx;
+
+	idx = -1;
+	while (vars->mapdata[arr_idx][++idx])
+		if (vars->mapdata[arr_idx][idx] != '1')
+			ft_throw_error("Map is not closed", vars);
+}
+
 void	ft_map_checker_middleware(t_vars *vars, int *exits, int *players)
 {
 	int	idx;
@@ -53,37 +51,39 @@ void	ft_map_checker_middleware(t_vars *vars, int *exits, int *players)
 
 	idx = -1;
 	arr_idx = 0;
-	while (vars->mapdata[arr_idx][++idx])
-		if (vars->mapdata[arr_idx][idx] != '1')
-			ft_throw_error("Map is not closed", vars);
+	ft_check_map_side(vars, arr_idx);
 	while (vars->mapdata[++arr_idx + 1])
 	{
 		idx = 0;
 		if (vars->mapdata[arr_idx][0] != '1')
 			ft_throw_error("Map is not closed", vars);
 		while (vars->mapdata[arr_idx][++idx + 1])
+		{
 			ft_check_type(vars->mapdata[arr_idx][idx], vars, exits, players);
+			if (vars->mapdata[arr_idx][idx] == 'P')
+			{
+				vars->player_x = idx;
+				vars->player_y = arr_idx;
+			}
+		}
 		if (vars->mapdata[arr_idx][idx] != '1')
 			ft_throw_error("Map is not closed", vars);
 	}
-	idx = -1;
-	while (vars->mapdata[arr_idx][++idx])
-		if (vars->mapdata[arr_idx][idx] != '1')
-			ft_throw_error("Map is not closed", vars);
+	ft_check_map_side(vars, arr_idx);
 }
 
-// void	ft_flood_fill(char **map, int x, int y, int *i)
-// {
-// 	if (map[y][x] == '1' || map[y][x] == 'F')
-// 		return ;
-// 	if (map[y][x] == 'C' || map[y][x] == 'E')
-// 		*i += 1;
-// 	map[y][x] = 'F';
-// 	ft_flood_fill(map, x + 1, y, i);
-// 	ft_flood_fill(map, x - 1, y, i);
-// 	ft_flood_fill(map, x, y + 1, i);
-// 	ft_flood_fill(map, x, y - 1, i);
-// }
+void	ft_check_is_map_playable(t_vars *vars, int exits)
+{
+	t_floodfill	floodfill;
+
+	floodfill.map = ft_read_map(vars);
+	floodfill.collectibles = vars->collectibles;
+	floodfill.exits = exits;
+	ft_flood_fill(&floodfill, vars->player_x, vars->player_y);
+	ft_free_char_arr(floodfill.map);
+	if (floodfill.collectibles || floodfill.exits)
+		ft_throw_error("Map is not playable", vars);
+}
 
 void	ft_map_checker(t_vars *vars)
 {
@@ -97,7 +97,7 @@ void	ft_map_checker(t_vars *vars)
 	exits = 0;
 	players = 0;
 	ft_check_path(vars);
-	ft_read_map(vars);
+	vars->mapdata = ft_read_map(vars);
 	ft_map_checker_middleware(vars, &exits, &players);
 	if (exits != 1)
 		ft_throw_error("Map is not valid, check amount of exits", vars);
@@ -109,4 +109,7 @@ void	ft_map_checker(t_vars *vars)
 	while (vars->mapdata[++arr_idx])
 		if (map_len != ft_strlen(vars->mapdata[arr_idx]))
 			ft_throw_error("Map size is invalid", vars);
+	vars->width = ft_strlen(vars->mapdata[0]) * vars->texture_size;
+	vars->height = ft_char_arr_length(vars->mapdata) * vars->texture_size;
+	ft_check_is_map_playable(vars, exits);
 }
