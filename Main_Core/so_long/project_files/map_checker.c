@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:49:46 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/19 18:39:30 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/07/20 13:38:25 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	ft_check_map_side(t_vars *vars, int arr_idx)
 	int	idx;
 
 	idx = -1;
-	while (vars->mapdata[arr_idx][++idx])
+	if (ft_char_arr_length(vars->mapdata) < 3)
+		ft_throw_error("Map is too small", vars);
+	while (vars->mapdata[arr_idx] && vars->mapdata[arr_idx][++idx])
 		if (vars->mapdata[arr_idx][idx] != '1')
 			ft_throw_error("Map is not closed", vars);
 }
@@ -108,7 +110,7 @@ void	ft_map_checker(t_vars *vars)
 	map_len = ft_strlen(vars->mapdata[0]);
 	while (vars->mapdata[++arr_idx])
 		if (map_len != ft_strlen(vars->mapdata[arr_idx]))
-			ft_throw_error("Map size is invalid", vars);
+			ft_throw_error("Map shape is invalid", vars);
 	vars->width = ft_strlen(vars->mapdata[0]) * vars->texture_size;
 	vars->height = ft_char_arr_length(vars->mapdata) * vars->texture_size;
 	ft_check_is_map_playable(vars, exits);

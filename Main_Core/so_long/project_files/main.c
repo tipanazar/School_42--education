@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tipanazar <tipanazar@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nkarpeko <nkarpeko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:04:49 by nkarpeko          #+#    #+#             */
-/*   Updated: 2023/07/19 18:41:29 by tipanazar        ###   ########.fr       */
+/*   Updated: 2023/07/20 13:20:45 by nkarpeko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,3 @@ int	main(int argc, char **argv)
 	mlx_loop(vars.mlx);
 	return (0);
 }
-
-
-
-//!!! NORMINETTE IN LIBFT
