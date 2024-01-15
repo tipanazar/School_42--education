@@ -13,6 +13,9 @@ $(NAME):
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	@echo "$(COLOR_GREEN)\n✅---COMPILING IS DONE---✅\n$(COLOR_END)"
 
+clean:
+	@$(RM) $(NAME)
+
 fclean:
 	@$(RM) $(NAME)
 
