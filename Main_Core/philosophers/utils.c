@@ -25,3 +25,13 @@ int ft_atoi(char *str)
     }
     return (res * sign);
 }
+
+unsigned long	get_time(void)
+{
+	unsigned long	ms;
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	ms = (tv.tv_sec * 1000UL) + (tv.tv_usec / 1000UL);
+	return (ms);
+}
