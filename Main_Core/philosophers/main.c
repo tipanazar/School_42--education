@@ -22,28 +22,61 @@ void data_validator(int argc, char **argv, t_data *args)
     }
 }
 
-// while (1)
-// {
-//     // think
-//     // take forks
-//     // eat
-//     // put forks
-//     // sleep
-// }
-
-int is_alive(void)
+int is_alive(t_philo philo)
 {
+    unsigned long time = get_time();
+    if (philo.last_meal != 0 && philo.last_meal - time > (unsigned long)philo.time_to_die)
+        return 0;
+
     return 1;
+}
+
+void custom_usleep(int time)
+{
+    unsigned long start;
+
+    start = get_time();
+    while (get_time() - start < (unsigned long)time)
+        usleep(1);
+}
+
+void philo_take_forks(t_philo philo)
+{
+    pthread_mutex_lock(philo.left_fork);
+    printf("%ld %d has taken a fork\n", get_time() - (unsigned long)philo.init_time, philo.id);
+    pthread_mutex_lock(philo.right_fork);
+    printf("%ld %d has taken a fork\n", get_time() - (unsigned long)philo.init_time, philo.id);
+    // usleep(100);
+}
+
+void philo_eat(t_philo philo)
+{
+    printf("%ld %d is eating\n", get_time() - (unsigned long)philo.init_time, philo.id);
+    // custom_usleep(philo.time_to_eat);
+    philo.last_meal = get_time();
+    pthread_mutex_unlock(philo.left_fork);
+    pthread_mutex_unlock(philo.right_fork);
+}
+
+void philo_sleep(t_philo philo)
+{
+    pthread_mutex_lock(philo.print);
+    printf("%ld %d is sleeping\n", get_time() - (unsigned long)philo.init_time, philo.id);
+    pthread_mutex_unlock(philo.print);
+    // custom_usleep(philo.time_to_sleep);
 }
 
 void routine(void *arg)
 {
     t_philo philo;
-    int idx = -1;
     philo = *(t_philo *)arg;
-    printf("Hello from thread %ld\n", philo.thread_id);
-    while(is_alive()) {
-
+    printf("Thread: %d\n", getpid());
+    // while (is_alive(philo))
+    while (1)
+    {
+        philo_take_forks(philo);
+        philo_eat(philo);
+        philo_sleep(philo);
     }
 }
 
@@ -53,12 +86,16 @@ void init_philosophers(t_data args)
     size_t time = get_time();
     args.philos = malloc(sizeof(t_philo) * args.num_of_philo);
     args.forks = malloc(args.num_of_philo * sizeof(pthread_mutex_t));
-    while (++idx <= args.num_of_philo)
+    while (++idx < args.num_of_philo)
     {
+        printf("Iteration...\n");
         args.philos[idx].id = idx + 1;
         args.philos[idx].last_meal = 0;
         args.philos[idx].init_time = time;
-        args.philos[idx].right_fork = &args.forks[idx];
+        args.philos[idx].time_to_die = args.time_to_die;
+        args.philos[idx].time_to_eat = args.time_to_eat;
+        args.philos[idx].time_to_sleep = args.time_to_sleep;
+        args.philos[idx].right_fork = &args.forks[idx]; // and for one philo??
         if (idx == args.num_of_philo - 1)
             args.philos[idx].left_fork = &args.forks[0];
         else
@@ -67,8 +104,9 @@ void init_philosophers(t_data args)
         //
         // else
         pthread_create(&args.philos[idx].thread_id, NULL, (void *)routine, &args.philos[idx]);
+        // printf("Idx: %d;  Thread: %lu\n", (unsigned long)args.philos[idx].thread_id);
     }
-}
+} 
 
 int main(int argc, char **argv)
 {

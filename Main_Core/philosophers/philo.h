@@ -10,11 +10,15 @@
 typedef struct s_philo
 {
     int id;
-    pthread_mutex_t		*left_fork;
-	pthread_mutex_t		*right_fork;
-    unsigned long       last_meal;
-	unsigned long		init_time;
-	pthread_t			thread_id;
+    unsigned long time_to_die;
+    pthread_mutex_t *print;
+    pthread_mutex_t *left_fork;
+    pthread_mutex_t *right_fork;
+    unsigned long last_meal;
+    unsigned long time_to_eat; 
+    unsigned long time_to_sleep;
+    unsigned long init_time;
+    pthread_t thread_id;
 } t_philo;
 
 typedef struct s_data
