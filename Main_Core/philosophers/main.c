@@ -43,9 +43,13 @@ void custom_usleep(int time)
 void philo_take_forks(t_philo philo)
 {
     pthread_mutex_lock(philo.left_fork);
+    pthread_mutex_lock(philo.locker);
     printf("%ld %d has taken a fork\n", get_time() - (unsigned long)philo.init_time, philo.id);
+    pthread_mutex_unlock(philo.locker);
     pthread_mutex_lock(philo.right_fork);
+    pthread_mutex_lock(philo.locker);
     printf("%ld %d has taken a fork\n", get_time() - (unsigned long)philo.init_time, philo.id);
+    pthread_mutex_unlock(philo.locker);
     // usleep(100);
 }
 
@@ -60,23 +64,25 @@ void philo_eat(t_philo philo)
 
 void philo_sleep(t_philo philo)
 {
-    pthread_mutex_lock(philo.print);
+    pthread_mutex_lock(philo.locker);
     printf("%ld %d is sleeping\n", get_time() - (unsigned long)philo.init_time, philo.id);
-    pthread_mutex_unlock(philo.print);
-    // custom_usleep(philo.time_to_sleep);
+    pthread_mutex_unlock(philo.locker);
+    custom_usleep(philo.time_to_sleep);
 }
 
 void routine(void *arg)
 {
     t_philo philo;
     philo = *(t_philo *)arg;
-    printf("Thread: %d\n", getpid());
+    // printf("Thread: %d\n", getpid());
+    printf("Thread: %ld\n", pthread_self());
     // while (is_alive(philo))
     while (1)
     {
         philo_take_forks(philo);
         philo_eat(philo);
         philo_sleep(philo);
+        // printf("%ld %d is sleeping\n", get_time() - (unsigned long)philo.init_time, philo.id);
     }
 }
 
@@ -87,26 +93,29 @@ void init_philosophers(t_data args)
     args.philos = malloc(sizeof(t_philo) * args.num_of_philo);
     args.forks = malloc(args.num_of_philo * sizeof(pthread_mutex_t));
     while (++idx < args.num_of_philo)
+        pthread_mutex_init(&args.forks[idx], NULL);
+    idx = -1;
+    while (++idx < args.num_of_philo)
     {
-        printf("Iteration...\n");
         args.philos[idx].id = idx + 1;
         args.philos[idx].last_meal = 0;
         args.philos[idx].init_time = time;
         args.philos[idx].time_to_die = args.time_to_die;
         args.philos[idx].time_to_eat = args.time_to_eat;
         args.philos[idx].time_to_sleep = args.time_to_sleep;
+        args.philos[idx].locker = &args.locker;
         args.philos[idx].right_fork = &args.forks[idx]; // and for one philo??
         if (idx == args.num_of_philo - 1)
             args.philos[idx].left_fork = &args.forks[0];
         else
             args.philos[idx].left_fork = &args.forks[idx + 1];
-        // if one philo...
-        //
-        // else
+        printf("Iteration...\n");
         pthread_create(&args.philos[idx].thread_id, NULL, (void *)routine, &args.philos[idx]);
-        // printf("Idx: %d;  Thread: %lu\n", (unsigned long)args.philos[idx].thread_id);
     }
-} 
+}
+// if one philo...
+//
+// else
 
 int main(int argc, char **argv)
 {
@@ -117,6 +126,8 @@ int main(int argc, char **argv)
     args.time_to_die = ft_atoi(argv[2]);
     args.time_to_eat = ft_atoi(argv[3]);
     args.time_to_sleep = ft_atoi(argv[4]);
+    pthread_mutex_init(&args.locker, NULL);
+    // pthread_mutex_init(&table.forks[i], NULL);
     if (argv[5])
         args.num_of_times_each_philo_must_eat = ft_atoi(argv[5]);
     else

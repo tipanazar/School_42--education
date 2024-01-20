@@ -11,7 +11,7 @@ typedef struct s_philo
 {
     int id;
     unsigned long time_to_die;
-    pthread_mutex_t *print;
+    pthread_mutex_t *locker;
     pthread_mutex_t *left_fork;
     pthread_mutex_t *right_fork;
     unsigned long last_meal;
@@ -29,6 +29,7 @@ typedef struct s_data
     int time_to_sleep;                    //* The time a philosopher will spend sleeping.
     int num_of_times_each_philo_must_eat; //* If all philosophers have eaten at least number_of_times_each_philosopher_must_eat times, the simulation stops. If not specified, the simulation stops when a philosopher dies.
     pthread_mutex_t *forks;
+    pthread_mutex_t locker;
     t_philo *philos;
 } t_data;
 
