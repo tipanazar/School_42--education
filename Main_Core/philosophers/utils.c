@@ -35,3 +35,32 @@ unsigned long	get_time(void)
 	ms = (tv.tv_sec * 1000UL) + (tv.tv_usec / 1000UL);
 	return (ms);
 }
+
+void custom_usleep(int time)
+{
+     unsigned long start;
+    start = get_time();
+    while ((get_time() - start) < (unsigned long)time)
+        usleep(time / 10);
+}
+
+void ft_printer(char *str, t_philo *philo)
+{
+    pthread_mutex_lock(&philo->data->printer);
+    printf("%ld %d %s\n", get_time() - (unsigned long)philo->init_time, philo->id, str);
+    pthread_mutex_unlock(&philo->data->printer);
+}
+
+void destroyer(t_data args)
+{
+    int idx = -1;
+    while (++idx < args.num_of_philo)
+        pthread_join(args.philos[idx].thread_id, NULL);
+    idx = -1;
+    while (++idx < args.num_of_philo)
+        pthread_mutex_destroy(&args.forks[idx]);
+
+    pthread_mutex_destroy(&args.printer);
+    free(args.philos);
+    free(args.forks);
+}
