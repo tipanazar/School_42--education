@@ -1,21 +1,21 @@
 #include "./philo.h"
 
-void data_validator(int argc, char **argv, t_data **args)
+void data_validator(int argc, char **argv, t_data *args)
 {
     if (argc < 5 || argc > 6)
     {
         printf("Error: Wrong number of arguments\n");
         exit(1);
     }
-    (*args)->num_of_philo = ft_atoi(argv[1]);
-    (*args)->time_to_die = ft_atoi(argv[2]);
-    (*args)->time_to_eat = ft_atoi(argv[3]);
-    (*args)->time_to_sleep = ft_atoi(argv[4]);
+    args->num_of_philo = ft_atoi(argv[1]);
+    args->time_to_die = ft_atoi(argv[2]);
+    args->time_to_eat = ft_atoi(argv[3]);
+    args->time_to_sleep = ft_atoi(argv[4]);
     if (argv[5])
-        (*args)->num_of_times_each_philo_must_eat = ft_atoi(argv[5]);
+        args->num_of_times_each_philo_must_eat = ft_atoi(argv[5]);
     else
-        (*args)->num_of_times_each_philo_must_eat = -1;
-    if ((*args)->num_of_philo < 1 || (*args)->num_of_philo > 200 || (*args)->time_to_die < 1 || (*args)->time_to_eat < 1 || (*args)->time_to_sleep < 1 || ((*args)->num_of_times_each_philo_must_eat < 1 && (*args)->num_of_times_each_philo_must_eat != -1))
+        args->num_of_times_each_philo_must_eat = -1;
+    if (args->num_of_philo < 1 || args->num_of_philo > 200 || args->time_to_die < 1 || args->time_to_eat < 1 || args->time_to_sleep < 1 || (args->num_of_times_each_philo_must_eat < 1 && args->num_of_times_each_philo_must_eat != -1))
     {
         printf("Error: Arguments are not valid!\n");
         exit(1);
@@ -40,16 +40,56 @@ int is_alive(t_philo *philo)
     return 1;
 }
 
+// void philo_take_forks(t_philo *philo)
+// {
+//     pthread_mutex_lock(philo->left_fork);
+//     if (is_alive(philo) == 0)
+//         return;
+//     ft_printer("has taken a fork", philo);
+//     pthread_mutex_lock(philo->right_fork);
+//     if (is_alive(philo) == 0)
+//         return;
+//     ft_printer("has taken a fork", philo);
+// }
+
 void philo_take_forks(t_philo *philo)
 {
-    pthread_mutex_lock(&philo->left_fork);
-    if (is_alive(philo) == 0)
-        return;
-    ft_printer("has taken a fork", philo);
-    pthread_mutex_lock(&philo->right_fork);
-    if (is_alive(philo) == 0)
-        return;
-    ft_printer("has taken a fork", philo);
+    if (philo->id % 2 == 0)
+    {
+        pthread_mutex_lock(philo->right_fork);
+        if (is_alive(philo) == 0)
+        {
+            pthread_mutex_unlock(philo->right_fork);
+            return;
+        }
+        ft_printer("has taken a fork", philo);
+        pthread_mutex_lock(philo->left_fork);
+        if (is_alive(philo) == 0)
+        {
+            pthread_mutex_unlock(philo->left_fork);
+            pthread_mutex_unlock(philo->right_fork);
+            return;
+        }
+        ft_printer("has taken a fork", philo);
+    }
+    else
+    {
+        pthread_mutex_lock(philo->left_fork);
+        if (is_alive(philo) == 0)
+        {
+            pthread_mutex_unlock(philo->left_fork);
+            return;
+        }
+        ft_printer("has taken a fork", philo);
+        pthread_mutex_lock(philo->right_fork);
+        if (is_alive(philo) == 0)
+        {
+            pthread_mutex_unlock(philo->left_fork);
+            pthread_mutex_unlock(philo->right_fork);
+            return;
+        }
+        ft_printer("has taken a fork", philo);
+    }
 }
 
 void philo_eat(t_philo *philo)
@@ -60,8 +100,8 @@ void philo_eat(t_philo *philo)
     custom_usleep(philo->time_to_eat);
     if (is_alive(philo))
         philo->last_meal = get_time();
-    pthread_mutex_unlock(&philo->left_fork);
-    pthread_mutex_unlock(&philo->right_fork);
+    pthread_mutex_unlock(philo->left_fork);
+    pthread_mutex_unlock(philo->right_fork);
 }
 
 void philo_sleep(t_philo *philo)
@@ -76,11 +116,8 @@ void routine(void *arg)
 {
     t_philo *philo;
     philo = (t_philo *)arg;
-    if (philo->id % 2 == 0)
-    {
-        // printf("Sleep\n");
-        usleep(500); //* ??
-    }
+    // if (philo->id % 2 == 0)
+    //     usleep(500); //* ??
     while (is_alive(philo))
     {
         philo_take_forks(philo);
@@ -104,30 +141,31 @@ void init_philosophers(t_data *args)
         args->philos[idx].time_to_eat = args->time_to_eat;
         args->philos[idx].time_to_sleep = args->time_to_sleep;
         args->philos[idx].data = args;
-        args->philos[idx].right_fork = args->forks[idx]; // and for one philo??
+        args->philos[idx].right_fork = &args->forks[idx]; // and for one philo??
         if (idx + 1 == args->num_of_philo)
-            args->philos[idx].left_fork = args->forks[0];
+            args->philos[idx].left_fork = &args->forks[0];
         else
-            args->philos[idx].left_fork = args->forks[idx + 1];
+            args->philos[idx].left_fork = &args->forks[idx + 1];
         pthread_create(&args->philos[idx].thread_id, NULL, (void *)routine, &args->philos[idx]);
+        // custom_usleep(100);
     }
 }
 
 int main(int argc, char **argv)
 {
-    t_data *args;
+    t_data args;
     int idx = -1;
 
     data_validator(argc, argv, &args);
-    args->forks = malloc((args->num_of_philo) * sizeof(pthread_mutex_t));
-    args->philos = malloc(sizeof(t_philo) * args->num_of_philo);
-    args->someone_died = false;
-    pthread_mutex_init(&args->printer, NULL);
-    pthread_mutex_init(&args->locker, NULL);
-    while (++idx < args->num_of_philo)
-        pthread_mutex_init(&args->forks[idx], NULL);
-    init_philosophers(args);
-    ddddestroyer(args);
+    args.forks = malloc((args.num_of_philo) * sizeof(pthread_mutex_t));
+    args.philos = malloc(sizeof(t_philo) * args.num_of_philo);
+    args.someone_died = false;
+    pthread_mutex_init(&args.printer, NULL);
+    pthread_mutex_init(&args.locker, NULL);
+    while (++idx < args.num_of_philo)
+        pthread_mutex_init(&args.forks[idx], NULL);
+    init_philosophers(&args);
+    ddddestroyer(&args);
     return 0;
 }
 

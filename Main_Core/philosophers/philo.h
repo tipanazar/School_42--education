@@ -15,8 +15,8 @@ typedef struct s_philo
 {
     int id;
     unsigned long time_to_die;
-    pthread_mutex_t left_fork;
-    pthread_mutex_t right_fork;
+    pthread_mutex_t *left_fork;
+    pthread_mutex_t *right_fork;
     unsigned long last_meal;
     unsigned long time_to_eat;
     unsigned long time_to_sleep;
