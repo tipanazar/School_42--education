@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include <stdbool.h>
 
 struct s_data;
 
@@ -33,6 +34,8 @@ typedef struct s_data
     int num_of_times_each_philo_must_eat; //* If all philosophers have eaten at least number_of_times_each_philosopher_must_eat times, the simulation stops. If not specified, the simulation stops when a philosopher dies.
     pthread_mutex_t *forks;
     pthread_mutex_t printer;
+    pthread_mutex_t locker;
+    bool someone_died;
     t_philo *philos;
 } t_data;
 
@@ -40,6 +43,6 @@ int ft_atoi(char *str);
 unsigned long get_time(void);
 void custom_usleep(int time);
 void ft_printer(char *str, t_philo *philo);
-void destroyer(t_data args);
+void ddddestroyer(t_data *args);
 
 #endif

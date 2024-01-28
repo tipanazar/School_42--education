@@ -1,4 +1,5 @@
-CC = cc
+CC = gcc -fsanitize=thread
+# CC = gcc
 CFLAGS =  -Wall -Werror -Wextra
 RM = rm -f
 

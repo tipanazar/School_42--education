@@ -26,19 +26,19 @@ int ft_atoi(char *str)
     return (res * sign);
 }
 
-unsigned long	get_time(void)
+unsigned long get_time(void)
 {
-	unsigned long	ms;
-	struct timeval	tv;
+    unsigned long ms;
+    struct timeval tv;
 
-	gettimeofday(&tv, NULL);
-	ms = (tv.tv_sec * 1000UL) + (tv.tv_usec / 1000UL);
-	return (ms);
+    gettimeofday(&tv, NULL);
+    ms = (tv.tv_sec * 1000UL) + (tv.tv_usec / 1000UL);
+    return (ms);
 }
 
 void custom_usleep(int time)
 {
-     unsigned long start;
+    unsigned long start;
     start = get_time();
     while ((get_time() - start) < (unsigned long)time)
         usleep(time / 10);
@@ -51,16 +51,22 @@ void ft_printer(char *str, t_philo *philo)
     pthread_mutex_unlock(&philo->data->printer);
 }
 
-void destroyer(t_data args)
+void ddddestroyer(t_data *args)
 {
     int idx = -1;
-    while (++idx < args.num_of_philo)
-        pthread_join(args.philos[idx].thread_id, NULL);
+    while (++idx < args->num_of_philo)
+        pthread_join(args->philos[idx].thread_id, NULL);
     idx = -1;
-    while (++idx < args.num_of_philo)
-        pthread_mutex_destroy(&args.forks[idx]);
+    while (++idx < args->num_of_philo)
+        pthread_mutex_destroy(&args->forks[idx]);
 
-    pthread_mutex_destroy(&args.printer);
-    free(args.philos);
-    free(args.forks);
+    pthread_mutex_destroy(&args->printer);
+    pthread_mutex_destroy(&args->locker);
+    // idx = -1;
+    // while (++idx < args->num_of_philo)
+    // {
+    //     free(args->philos[idx]);
+    // }
+    free(args->philos);
+    free(args->forks);
 }
