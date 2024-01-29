@@ -25,8 +25,14 @@ void data_validator(int argc, char **argv, t_data *args)
 int is_alive(t_philo *philo)
 {
     unsigned long time;
+    pthread_mutex_lock(&philo->data->locker);
     if (philo->data->someone_died)
+    {
+        pthread_mutex_unlock(&philo->data->locker);
         return 0;
+    }
+    pthread_mutex_unlock(&philo->data->locker);
+
     time = get_time();
     if (philo->last_meal != 0 && time - philo->last_meal >= (unsigned long)philo->time_to_die)
     {
@@ -39,18 +45,6 @@ int is_alive(t_philo *philo)
 
     return 1;
 }
-
-// void philo_take_forks(t_philo *philo)
-// {
-//     pthread_mutex_lock(philo->left_fork);
-//     if (is_alive(philo) == 0)
-//         return;
-//     ft_printer("has taken a fork", philo);
-//     pthread_mutex_lock(philo->right_fork);
-//     if (is_alive(philo) == 0)
-//         return;
-//     ft_printer("has taken a fork", philo);
-// }
 
 void philo_take_forks(t_philo *philo)
 {
@@ -116,8 +110,6 @@ void routine(void *arg)
 {
     t_philo *philo;
     philo = (t_philo *)arg;
-    // if (philo->id % 2 == 0)
-    //     usleep(500); //* ??
     while (is_alive(philo))
     {
         philo_take_forks(philo);
@@ -147,7 +139,6 @@ void init_philosophers(t_data *args)
         else
             args->philos[idx].left_fork = &args->forks[idx + 1];
         pthread_create(&args->philos[idx].thread_id, NULL, (void *)routine, &args->philos[idx]);
-        // custom_usleep(100);
     }
 }
 
@@ -169,11 +160,32 @@ int main(int argc, char **argv)
     return 0;
 }
 
+// struct s_test
+// {
+//     pthread_mutex_t mutex;
+//     pthread_t thread_id;
+// };
+
+// void test_func(void *arg)
+// {
+//     struct s_test *test_struct;
+//     test_struct = (struct s_test *)arg;
+//     pthread_mutex_lock(&test_struct->mutex);
+//     printf("Locked: %ld\n\n", get_time());
+// }
+
 // int main(void)
 // {
+//     struct s_test test_struct;
+//     pthread_mutex_init(&test_struct.mutex, NULL);
+//     pthread_create(&test_struct.thread_id, NULL, (void *)test_func, &test_struct);
+//     custom_usleep(1000);
+
+//     printf("Try to lock: %d\n", pthread_mutex_trylock(&test_struct.mutex));
 //     printf("Time: %ld\n", get_time());
-//     custom_usleep(100);
-//     printf("Time: %ld\n", get_time());
+//     // pthread_mutex_unlock(&test_struct.mutex);
+//     pthread_join(test_struct.thread_id, NULL);
+//     pthread_mutex_destroy(&test_struct.mutex);
 //     return 0;
 // }
 
