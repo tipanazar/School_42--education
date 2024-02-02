@@ -2,26 +2,26 @@
 
 int	ft_atoi(char *str)
 {
-	int	i;
+	int	idx;
 	int	res;
 	int	sign;
 
-	i = 0;
+	idx = 0;
 	res = 0;
 	sign = 1;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	while (str[i] == '-' || str[i] == '+')
+	while (str[idx] == 32 || (str[idx] >= 9 && str[idx] <= 13))
+		idx++;
+	while (str[idx] == '-' || str[idx] == '+')
 	{
-		if (str[i] == '-')
+		if (str[idx] == '-')
 			sign *= -1;
-		i++;
+		idx++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[idx] >= '0' && str[idx] <= '9')
 	{
 		res *= 10;
-		res += str[i] - 48;
-		i++;
+		res += str[idx] - 48;
+		idx++;
 	}
 	return (res * sign);
 }
@@ -36,15 +36,6 @@ unsigned long	get_time(void)
 	return (ms);
 }
 
-// void	custom_usleep(int time)
-// {
-// 	unsigned long	start;
-
-// 	start = get_time();
-// 	while ((get_time() - start) < (unsigned long)time)
-// 		usleep(time / 10);
-// }
-
 int	custom_usleep(int time, t_philo *philo)
 {
 	unsigned long	start;
@@ -53,10 +44,10 @@ int	custom_usleep(int time, t_philo *philo)
 	while ((get_time() - start) < (unsigned long)time)
 	{
 		if (is_alive(philo) == 0)
-			return 0;
+			return (0);
 		usleep(1);
 	}
-    return 1;
+	return (1);
 }
 
 void	ft_printer(char *str, t_philo *philo)
@@ -67,27 +58,13 @@ void	ft_printer(char *str, t_philo *philo)
 	pthread_mutex_unlock(&philo->data->printer);
 }
 
-int	is_alive(t_philo *philo)
+bool	is_everyone_full(t_data *args)
 {
-	unsigned long	time;
+	int	idx;
 
-	pthread_mutex_lock(&philo->data->locker);
-	if (philo->data->someone_died)
-	{
-		pthread_mutex_unlock(&philo->data->locker);
-		return (0);
-	}
-	time = get_time();
-	// if (time
-	// 	- philo->last_meal >= (unsigned long)philo->time_to_die)
-	if (philo->last_meal != 0 && time
-		- philo->last_meal >= (unsigned long)philo->time_to_die)
-	{
-		philo->data->someone_died = true;
-		ft_printer("died", philo);
-		pthread_mutex_unlock(&philo->data->locker);
-		return (0);
-	}
-	pthread_mutex_unlock(&philo->data->locker);
-	return (1);
+	idx = -1;
+	while (++idx < args->num_of_philo)
+		if (args->philos[idx].dishes_eaten < args->num_of_times_philo_must_eat)
+			return (false);
+	return (true);
 }
