@@ -1,48 +1,58 @@
 #ifndef PHILO_H
-# define PHILO_H
+#define PHILO_H
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/time.h>
+#include <unistd.h>
 
-# include <pthread.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
-# include <unistd.h>
+typedef struct global t_global;
 
-struct s_data;
-
-typedef struct s_philo
+typedef struct person
 {
-	int				id;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	unsigned long	last_meal;
-	int				dishes_eaten;
-	unsigned long	init_time;
-	pthread_t		thread_id;
-	struct s_data	*data;
-}					t_philo;
+	long long left_hand;
+	long long right_hand;
+	long long id;
+	long long time_last_food;
+	long long counter_fed;
+	pthread_t th;
+	t_global *global;
+} t_person;
 
-typedef struct s_data
+typedef struct global
 {
-	int				num_of_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				num_of_times_philo_must_eat;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	printer;
-	pthread_mutex_t	locker;
-	bool			someone_died;
-	t_philo			*philos;
-}					t_data;
+	long long num_philo;
+	long long num_fed;
+	int go;
+	int locked;
+	long long time_to_die;
+	long long time_to_eat;
+	long long time_to_sleep;
+	long long num_times_feed;
+	unsigned long long start_time;
+	pthread_mutex_t printf;
+	pthread_mutex_t checker;
+	pthread_mutex_t eating;
+	pthread_mutex_t *forks;
+	t_person *person;
+} t_global;
 
-int					ft_atoi(char *str);
-unsigned long		get_time(void);
-int					custom_usleep(int time, t_philo *philo);
-void				ft_printer(char *str, t_philo *philo);
-int					is_alive(t_philo *philo);
-bool				is_everyone_full(t_data *args);
-void				routine(void *arg);
+int ft_check_args(char **argv, t_global *philos);
+int ft_isnums(char **str);
+void *start_life(void *arg);
+int ft_start_philo(t_global *global);
+long long ft_atoi(const char *str);
+long long current_time(void);
+void ft_free_philo(t_global *global);
+void ft_custom_sleep(long long
+						 time,
+					 t_global *global);
+void ft_die_check(t_global *global);
+void philo_print(t_person *philo, char *str, int flag);
+int get_go(t_global *global);
+void eating(t_person *philo);
+void helper_die_check(t_global *global);
+int hepler_start_philo(t_global *global);
 
 #endif

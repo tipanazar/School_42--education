@@ -1,113 +1,124 @@
+
 #include "./philo.h"
 
-int	is_alive(t_philo *philo)
+int	ft_isnums(char **str)
 {
-	unsigned long	time;
-	bool			everyone_full;
+	int	f_idx;
+	int	s_idx;
 
-	everyone_full = false;
-	pthread_mutex_lock(&philo->data->locker);
-	if (philo->data->num_of_times_philo_must_eat != -1)
-		everyone_full = is_everyone_full(philo->data);
-	if (philo->data->someone_died)
+	f_idx = 1;
+	while (str[f_idx])
 	{
-		pthread_mutex_unlock(&philo->data->locker);
-		return (0);
-	}
-	time = get_time();
-	if ((time - philo->last_meal >= (unsigned long)philo->data->time_to_die)
-		|| everyone_full)
-	{
-		philo->data->someone_died = true;
-		if (!everyone_full)
-			ft_printer("died", philo);
-		pthread_mutex_unlock(&philo->data->locker);
-		return (0);
-	}
-	pthread_mutex_unlock(&philo->data->locker);
-	return (1);
-}
-
-int	data_validator(int argc, char **argv, t_data *args)
-{
-	if (argc < 5 || argc > 6)
-	{
-		printf("Error: Wrong number of arguments\n");
-		return (1);
-	}
-	args->num_of_philo = ft_atoi(argv[1]);
-	args->time_to_die = ft_atoi(argv[2]);
-	args->time_to_eat = ft_atoi(argv[3]);
-	args->time_to_sleep = ft_atoi(argv[4]);
-	if (argv[5])
-		args->num_of_times_philo_must_eat = ft_atoi(argv[5]);
-	else
-		args->num_of_times_philo_must_eat = -1;
-	if (args->num_of_philo < 1 || args->num_of_philo > 200
-		|| args->time_to_die < 1 || args->time_to_eat < 1
-		|| args->time_to_sleep < 1 || (args->num_of_times_philo_must_eat < 1
-			&& args->num_of_times_philo_must_eat != -1))
-	{
-		printf("Error: Arguments are not valid!\n");
-		return (1);
+		s_idx = 0;
+		while (str[f_idx][s_idx])
+		{
+			if (str[f_idx][s_idx] > '9' || str[f_idx][s_idx] < '0')
+				return (1);
+			s_idx++;
+		}
+		f_idx++;
 	}
 	return (0);
 }
 
-void	init_philosophers(t_data *args)
+int	ft_check_args(char **argv, t_global *global)
 {
 	int	idx;
 
-	idx = -1;
-	while (++idx < args->num_of_philo)
+	idx = 0;
+	if (ft_isnums(argv))
+		return (1);
+	while (argv[++idx])
 	{
-		args->philos[idx].id = idx + 1;
-		args->philos[idx].init_time = get_time();
-		args->philos[idx].last_meal = args->philos[idx].init_time;
-		args->philos[idx].dishes_eaten = 0;
-		args->philos[idx].data = args;
-		args->philos[idx].right_fork = &args->forks[idx];
-		if (idx + 1 == args->num_of_philo)
-			args->philos[idx].left_fork = &args->forks[0];
-		else
-			args->philos[idx].left_fork = &args->forks[idx + 1];
-		pthread_create(&args->philos[idx].thread_id, NULL, (void *)routine,
-			&args->philos[idx]);
+		if (ft_atoi(argv[idx]) <= 0)
+			return (1);
 	}
+	global->num_philo = ft_atoi(argv[1]);
+	global->time_to_die = ft_atoi(argv[2]);
+	global->time_to_eat = ft_atoi(argv[3]);
+	global->time_to_sleep = ft_atoi(argv[4]);
+	global->num_times_feed = 0;
+	if (argv[5])
+		global->num_times_feed = ft_atoi(argv[5]);
+	global->num_fed = 0;
+	global->go = 1;
+	pthread_mutex_init(&global->printf, NULL);
+	pthread_mutex_init(&global->checker, NULL);
+	pthread_mutex_init(&global->eating, NULL);
+	global->locked = 0;
+	return (0);
 }
 
-void	ddddestroyer(t_data *args)
+void	*start_life(void *arg)
 {
-	int	idx;
+	t_person	*philo;
 
+	philo = (t_person *)arg;
+	if (philo->global->num_philo == 1)
+	{
+		philo_print(philo, "has taken a fork", 1);
+		ft_custom_sleep(philo->global->time_to_die, philo->global);
+	}
+	if (philo->global->num_philo > 1 && philo->id % 2)
+		ft_custom_sleep(40, philo->global);
+	while (get_go(philo->global))
+	{
+		if (philo->id % 2)
+			usleep(100);
+		if (philo->global->num_times_feed > 0
+			&& philo->counter_fed >= philo->global->num_times_feed)
+			break ;
+		eating(philo);
+		pthread_mutex_unlock(&philo->global->forks[philo->left_hand]);
+		pthread_mutex_unlock(&philo->global->forks[philo->right_hand]);
+		philo_print(philo, "is sleeping", 1);
+		ft_custom_sleep(philo->global->time_to_sleep, philo->global);
+		philo_print(philo, "is thinking", 1);
+	}
+	return (NULL);
+}
+
+int	ft_start_philo(t_global *global)
+{
+	long long	idx;
+
+	global->person = (t_person *)malloc(sizeof(t_person) * global->num_philo);
+	if (!global->person)
+		return (1);
+	global->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* global->num_philo);
+	if (!global->forks)
+	{
+		free(global->person);
+		return (1);
+	}
 	idx = -1;
-	while (++idx < args->num_of_philo)
-		pthread_join(args->philos[idx].thread_id, NULL);
-	idx = -1;
-	while (++idx < args->num_of_philo)
-		pthread_mutex_destroy(&args->forks[idx]);
-	pthread_mutex_destroy(&args->printer);
-	pthread_mutex_destroy(&args->locker);
-	free(args->philos);
-	free(args->forks);
+	while (++idx < global->num_philo)
+	{
+		if (pthread_mutex_init(&global->forks[idx], NULL))
+		{
+			free(global->person);
+			free(global->forks);
+			return (1);
+		}
+	}
+	if (hepler_start_philo(global))
+		return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data	args;
-	int		idx;
+	t_global	global;
 
-	idx = -1;
-	if (data_validator(argc, argv, &args))
-		return (1);
-	args.forks = malloc((args.num_of_philo) * sizeof(pthread_mutex_t));
-	args.philos = malloc(sizeof(t_philo) * args.num_of_philo);
-	args.someone_died = false;
-	pthread_mutex_init(&args.printer, NULL);
-	pthread_mutex_init(&args.locker, NULL);
-	while (++idx < args.num_of_philo)
-		pthread_mutex_init(&args.forks[idx], NULL);
-	init_philosophers(&args);
-	ddddestroyer(&args);
+	if (argc >= 5 && argc <= 6)
+	{
+		if (ft_check_args(argv, &global))
+			return (-1);
+		if (ft_start_philo(&global))
+			return (-1);
+		ft_die_check(&global);
+		ft_free_philo(&global);
+	}
 	return (0);
 }
