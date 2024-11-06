@@ -5,13 +5,19 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Name of the executable
-NAME = megaphone
+NAME = violence
 
 # Source files
-SRCS = megaphone.cpp 
+SRCS = main.cpp \
+       HumanA.cpp \
+       HumanB.cpp \
+       Weapon.cpp 
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)
+
+# Header files
+HEADERS = HumanA.hpp HumanB.hpp Weapon.hpp
 
 # Rules
 all: $(NAME)
@@ -19,7 +25,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
