@@ -33,12 +33,16 @@ void PhoneBook::ft_add_contact(Contact &contact)
 
 void PhoneBook::ft_show_list()
 {
-    std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
+    std::cout << std::setw(10) << "Index"
+              << "|" << std::setw(10) << "First Name"
+              << "|" << std::setw(10) << "Last Name"
+              << "|" << std::setw(10) << "Nickname"
+              << std::endl;
     std::cout << "-------------------------------------------" << std::endl;
 
     for (int i = 0; i < contactsNumber; i++)
     {
-        std::cout << "         " << i << "|";
+        std::cout << std::setw(10) << i << "|";
         std::cout << ft_trim_string(contacts[i].getFirstName()) << "|";
         std::cout << ft_trim_string(contacts[i].getLastName()) << "|";
         std::cout << ft_trim_string(contacts[i].getNickname()) << std::endl;
