@@ -9,7 +9,8 @@ int main(int argc, char **argv)
     for (int idx = 1; argv[idx]; ++idx)
     {
         std::string str = argv[idx];
-        std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+        for (int i = 0; str[i]; i++)
+            str[i] = std::toupper(str[i]);
         std::cout << str;
     }
     std::cout << std::endl;
