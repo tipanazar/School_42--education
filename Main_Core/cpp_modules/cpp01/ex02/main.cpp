@@ -17,9 +17,9 @@ int main(void)
 
 /*
     Pointer: stringPTR is a pointer to str, initialized with the address of str.
-    
+
     Reference: stringREF is a reference to str, which acts as an alias for str.
-    
+
     Output: The program prints the memory addresses of str, stringPTR, and stringREF,
     followed by the values of str, the value pointed to by stringPTR,
     and the value referred to by stringREF.
